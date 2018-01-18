@@ -1,0 +1,332 @@
+extends layout
+
+block content
+
+    .wrapper
+      #welcomeSign
+      br
+      h1 
+       center FAQS
+      br
+      h4
+        center Type a word or phrase that you are looking for and the questions/answers will filter out with every letter you type.
+
+      form.searchbox_1(action='', method='post')
+        input#filter.search_1(type='text', placeholder='Search')
+
+      ul.faqsList
+        li.blocks
+          div
+            i.question The sample return UDP packets (angle data, rise time data, fall time data) don’t include a frame ID in the header.  This can make it a bit tricky to ensure that frames (a full scan, top to bottom) are correctly assembled, since UDP doesn’t guarantee delivery order.  What’s the proper procedure to follow, to ensure proper frame assembly?
+            strong.answer There are timestamps in the angle packets that can be used to orient which frame packets came from although it is not a frame ID.  Additionally, packets are sent in line order and there are multiple packets per line so even though packets can be delivered out of order, the line number should be a pretty good indicator as to what frame a packet is associated with.  There are multiple range packets per line (at least 3 depending on the number of returns) so a bunch of packets would have to be reordered for range packets to come in with associated with an ambiguous frame. 
+        br
+        li.blocks
+          div
+            i.question What do these configuration parameters do?  How does it affect output? 
+            strong.answer ADC Phase Offset is for adjusting the phasing between odd and even lines with the goal of getting the lines within an eye aligned with each other. Holdoff delay is the amount of time that the G2 control box waits before registering return pulses.  If this is set too large, you lose minimum distance. If it is set too small, you end up with a blank image or an image with weird patterns.  It is typically somewhere around 155 ns, but from unit to unit can vary within the range of 120 to 210 ns.  Thresholds determine the amplitude used to consider a pulse valid.  Too low of a number results in extra noise.  Too high results in a less populated image. 
+        br
+        li.blocks
+          div
+            i.question How do we calibrate the sensor, to find the correct values for the above parameters?  
+            strong.answer We will show you during setup/delivery. 
+        br
+        li.blocks
+          div
+            i.question I’ve heard that Threshold might need to change to accommodate changes in temperature or perhaps other factors.  Is there a way I can determine from the data whether the threshold is too high or too low?   
+            strong.answer From the data it would require being able to identify noise based on the data and adjusting based on the amount of noise received, balanced with the number of returns
+        br
+        li.blocks
+          div
+            i.question  How does the return pulse (rise time to fall time) relate to the original outbound pulse?  What factors can change this timespan?  How do different surface angles and compositions affect this?
+            strong.answer There are potentially multiple return pulses associated with one original outbound pulse depending on the reflectivity and transmissivity of objects in its path.  The rise time and fall time is dependent upon the reflectivity and distance of the object.  We are currently investigating this in more detail internally (determining reflectivity).
+        br
+        li.blocks
+          div
+            i.question Is there a tried-and-true formula for computing range, based on the rise and fall times? 
+            strong.answer Disregarding the effects of reflectivity, if you have a system with a calibrated range offset to account for variable electrical and optical delays in our system, the return value can be converted into picoseconds and then to distance by using light speed over 2 (for round trip travel).  This is shown in the sample code
+        br
+        li.blocks
+          div
+            i.question  Are the YSCAN values sent in configuration command packets always top to bottom  (up-side to down-side), or is the blue eye bottom to top? 
+            strong.answer Always bottom to top.  Currently they need to be monotonically increasing.  You don't need to account for the direction of the scan. 
+        br
+        li.blocks
+          div
+            i.question What are the functional limits of YSCAN value spacing?  I know there is a minimum spacing to keep the sensor eye-safe, but is there a maximum spacing?
+            strong.answer There is no maximum spacing other than not being able to go outside of the outer limits. (-15000 and 15000 milliradians)
+        br
+        li.blocks
+          div
+            i.question What’s the delta time between samples, so that I can calculate the precise timestamp of each sample based on the frame start timestamp 
+            strong.answer 1.5625 microseconds between samples 
+        br
+        li.blocks
+          div
+            i.question Is there some delay in sample times after the laser gets to the end of the frame, while it is returning to the starting position, or does the first sample of a frame occur exactly 1/(10*1000*64) second after the last sample of the previous frame?  
+            strong.answer There is one line worth of delay going from frame to frame.
+        br
+        li.blocks
+          div
+            i.question What happens if there would be more than 7 returns?  Do the weakest (shortest) returns get dropped, or the farthest?  
+            strong.answer Farthest would get dropped
+        br
+        li.blocks
+          div
+            i.question  How about if I’ve configured the sensor to report a lesser number of returns (say 4), and more than that are received?  Does this behavior work the same as for detecting more than 7 returns? 
+            strong.answer Returns farther than 4 would be dropped
+        br
+        li.blocks
+          div
+            i.question How does Auto Phase work?  Do AdcPhaseOffset values have any effect if it’s in auto mode? 
+            strong.answer  Auto phase attempts to do the phasing automatically.  Auto phase override must be off to use auto phasing. It must be on for the adc phase offsets values determined via calibration to be used. 
+        br
+        li.blocks
+          div
+            i.question Do I set the bit to 1 or 0 in the ADCPhaseOverride (sic) command, to turn on Auto Phase?  
+            strong.answer 0 
+        br
+        li.blocks
+          div
+            i.question What's the name of Tonks and Lupin's son? 
+            strong.answer Teddy
+        br
+        li.blocks
+          div
+            i.question If Auto Phase determines AdcPhaseOffset values on its own, is there some way to poll the sensor for what values it’s using, without changing them?
+            strong.answer No, not currently.
+        br
+        li.blocks
+          div
+            i.question The laser state does stay 'Down' despite repeated commands to come up. 
+            strong.answer The distance data will still return packets with whatever data it gets, regardless of the laser state.  That means that when the laser is down, you will probably see noise on some pixels, but mostly blank pixels with no returns.
+        br
+        li.blocks
+          div
+            i.question The response to the YSCAN2 command contains a 'status' field.  I expected this field to be set to YSCAN_PACKET_STATUS_UNSAFE_PATTERN, but it seems to still be zero
+            strong.answer The laser status should return the fact that the Y is too small. 
+        br
+        li.blocks
+          div
+            i.question I don't get any other error responses (LUM_TLV_ERROR_TLV, LUM_TLV_ILLEGAL_COMMAND, etc) 
+            strong.answer The 'q' command should show this. 
+        br
+        li.blocks
+          div
+            i.question I'm not sure if any LUM_TLV_LASER_STATUS bits are set, as I don't have access to the hardware right now, and the log data I'm looking at didn't request this information 
+            strong.answer The TLV for laser status should show a bit indicating what is causing the laser to shut down
+        br
+        li.blocks
+          div
+            i.question We are confused because of the conflict with lum::scan_pattern_eye_safe in lumsdk/src/luminar_point_cloud/src/tlv/yscan/yscan.cpp.  It validates our commands down to 6.4 degree sweep.  Why the disconnect?
+            strong.answer The SDK does currently allow any number to be entered but the hardware laser safety prevents unsafe entries from being executed. It is currently being fixed and will be in the next SDK release. The next release will prevent invalid entries.
+        br
+        li.blocks
+          div
+            i.question What is the minimum vertical FoV (assuming uniform scan line spacing) we can currently command? 
+            strong.answer The Vertical FOV is restricted to 11.5 degrees. If the FOV setting is below that level, the system will shut the laser down.  This is a safety feature of the G2 system.  Below the 11.5 degrees makes the system non-eyesafe.
+        br
+        li.blocks
+          div
+            i.question We are planning on implementing the ability to update these parameters without having to shutdown and restart the driver, what is the fastest rate supported that we can adjust the vertical FoV?
+            strong.answer You can update the vertical FOV without shutting down the driver. As far as the fastest rate, it may not be consistent as it is dependent on what FOV you are switching between. It is possible that if changed too fast the laser safety circuit could be tripped. 
+        br
+        li.blocks
+          div
+            i.question So the terms “rising” and “falling”/”drop” always refer to the leading and trailing edge of the sample return, not the scanning motion of the eye?  
+            strong.answer Correct. Rising and falling always refer to the edges.
+        br
+        li.blocks
+          div
+            i.question What I didn’t realize before, is that the data for a single sample will be broken in three separate packets: 1. Angle data 2. Rising edge range/time 3. Falling edge range/time. Is that right?  I was mistaken I guess in thinking the rising/falling ranges were stored in the same packet. 
+            strong.answer They are in 3 separate packets, correct.
+        br
+        li.blocks
+          div
+            i.question There are references in the example code to “rising edge” and “falling edge”, and “eye rise” and “eye drop”.  I’m getting a little confused about whether these are the same thing or not 
+            strong.answer They are the same. Rising edge = eye rise and falling edge = eye drop
+        br
+        li.blocks
+          div
+            i.question Are samples taken when an eye is travelling in both upward and downward directions, or just one of them? 
+            strong.answer Just one 
+        br
+        li.blocks
+          div
+            i.question In lum_eth_protocol.h (line 95), it says that angle payloads are transmitted for the rising edges of blue and green eyes.  Does “rising edge” in this case refer to the motion of the eye, or the start of the first sample return? 
+            strong.answer start of the first sample return 
+        br
+        li.blocks
+          div
+            i.question Multi-return values (line 109) have a Rising Flag.  Does this indicate the begin/end of the sample return pulse? 
+            strong.answer Indicates whether the return is from the rising edge or falling edge of the pulse. Both are recorded per return 
+        br
+        li.blocks
+          div
+            i.question I recall [someone] saying that each sample had a begin and end time/distance, from which luminosity could maybe be inferred. 
+            strong.answer If you capture the falling and rising edge it can be used to get a close approximation of the intensity from the width
+        br
+        li.blocks
+          div
+            i.question Somewhere in the code, I see that not only does the data for one of the eyes get flipped (because it scans upward while the other scans downward), but that odd lines are reversed (due to the zig-zag pattern of scanning, I assume). When setting yscan_position, is this positive-up for both eyes, or is one positive-down?  Which one?
+            strong.answer Both are positive up
+        br
+        li.blocks
+          div
+            i.question When sample azimuth is reported, is this relative to the beginning of the scanline (zig-zagging left/right), or is it positive-right from some reference point?
+            strong.answer Positive right from a reference point. Which direction the scanline is going doesn’t matter 
+        br
+        li.blocks
+          div
+            i.question When sample elevation is reported, is this relative to center positive-up, or is it inverted for one of the eyes? 
+            strong.answer  It is inverted for the blue eye. Our sample code g the elevation for that eye provides an example of flipping 
+        br
+        li.blocks
+          div
+            i.question Does the interpretation of sample elevation flip when an eye is dropping vs rising?  
+            strong.answer No, they are not correlated 
+        br
+        li.blocks
+          div
+            i.question There are timestamps on the multi-return packets, which I think I’ve worked out a decent way of converting to client time.
+            strong.answer Time stamps are only sent in the angle packets and not the multi-return packets. 
+        br
+        li.blocks
+          div
+            i.question For the timing of the individual samples, can I assume they are all evenly spaced in time, between the timestamps given in one packet and the next?
+            strong.answer The TimeStamp is the time in microseconds for the first sample in the packet (mod 2^32).  That time is a 32-bit quantity that starts at zero when the unit is powered on and wraps at 32 bits.  That means that it wraps about every 4295 seconds, so there should be no possibility for an aliased value 
+        br
+        li.blocks
+          div
+            i.question Is there some fixed period between samples?  
+            strong.answer The fields first_timestamp_us and first_sample_index are reserved in distance packets, and normally sent as zeros.  They may have values in the future, however, but for now they should be ignored.
+        br
+        li.blocks
+          div
+            i.question How about on the scanline ends?  Is there a pause between one line and the next, or is the inter-sample period the same here too? 
+            strong.answer There is no pause at the scanline end, the last sample from line N is simply one laser pulse before the first sample on line N+1.
+        br
+        li.blocks
+          div
+            i.question How does the setting of yscan_positions work?  There are 640 positions in the array, but only 64 scan lines.  It looks like the example code sets all 640, evenly spaced between the min and max.
+            strong.answer Scan_position setting: There used to be various Hz modes, which is why the need for 640 positions is there. We currently only support 10Hz but all 640 positions still need to be filled
+        br
+        li.blocks
+          div
+            i.question Which of these are the ones used for the 64 scan lines? 
+            strong.answer Every 10th position is used as a scan line 
+        br
+        li.blocks
+          div
+            i.question Do they all have to be set, or can some remain 0, or a bogus value? 
+            strong.answer They all have to be set
+        br
+        li.blocks
+          div
+            i.question Could I create more complex scan patterns, such as by having some delta-angles smaller than others? 
+            strong.answer  Yes, you can have non-uniform delta angles, as long as the scan pattern is monotonically increasing and each delta is greater than our min eye safe step size 
+        br
+        li.blocks
+          div
+            i.question Could I make a 20Hz Interleaved pattern by doing something like 0 2 4 6 8 … 9 7 5 3 1 ,  or  0 2 4 6 8 … 1 3 5 7 9 … ?
+            strong.answer It's not possible to make a 20Hz pattern as we only support 10Hz 
+        br
+        li.blocks
+          div
+            i.question Could I break something mechanical or electrical by setting yscan_positions incorrectly?
+            strong.answer It's not possible to break something permanently however, sending invalid values could cause the laser to shut off or rejected scan patterns. 
+        br
+        li.blocks
+          div
+            i.question What’s the feasibility of transferring the data via TCP, instead of UDP?  That would solve all those problems, and make my receive code much simpler.  Is server output data packaged in a C++ Posix environment, or is it something more “hard-coded” in FPGA logic (which I would then see why UDP was chosen)?  
+            strong.answer Regarding TCP, it's not possible for us to make that switch at this time. however, if you'd like us to review your code and/or provide some input on the best practice for reading this data we'd be glad to do so. We want you to be successful 
+        br
+        li.blocks
+          div
+            i.question If TCP were pretty challenging to support, then as a fall-back, at least a FrameID in the packet header would help me deal with packet reordering and droppage.  Perhaps some of the high order bits in lum_group_header::first_sample_index or num_samples could serve as a small frameID (it probably doesn’t need to be more than a few bits) 
+            strong.answer For the FrameID, I will speak to our embedded lead to see if it's possible to add that to the packet header without changing our current format and will get back to you
+        br
+        li.blocks
+          div
+            i.question There are three parameters which can be set for the sensor, ADC Phase Offset, Holdoff, and Threshold. I think I understand Holdoff (delay until start of sampling for returns, acts as a range bias correction) and Threshold (signal level to determine when Rise and Fall times happen). ADC Phase Offset, I don’t have a guess for. 
+            strong.answer ADC Phase Offset is used for galvanometer alignment. Hold off values don't change with different length cables as long as long as all cables are the same length. Galvo offsets are mostly auto phased but the adc lag must be adjusted per system
+        br
+        li.blocks
+          div
+            i.question How is it expected that these will be used?  Are they things which can be calibrated once for each sensor, or would they need to be adjusted at runtime in response to environmental conditions (for instance, night vs day)?  Can you say what they do, and how they affect performance?
+            strong.answer All of those items can be calibrated for each sensor.  Usually holdoff delay would be the same assuming the same hardware setup (same length cables etc.)  Technically for ideal performance, threshold would need to be updated at runtime, with the biggest factor that I'm aware of being temperature.  Galvo alignment/ADC Offset and holdoff delay should always be the same. 
+        br
+        li.blocks
+          div
+            i.question I’m also curious how long a laser pulse lasts for, and how (or if) this relates to the delta times seen between the Rise and Fall times.  Do returns always last longer than a laser pulse, or do they sometimes take less time? 
+            strong.answer Laser pulses begin as s 2 ns pulse bet get widened when they return as they are low passed through the bandwidth of the detector age typically growing it to near 10ns 
+        br
+        li.blocks
+          div
+            i.question Is there some minimum time between returns, such that a cluttered object (leaves in a tree) doesn’t result in all 7 returns being tightly clustered together, or is the signal level crossing the threshold sufficient for marking a return as starting/ending?  
+            strong.answer Signal level crossing the threshold is sufficient 
+        br
+        li.blocks
+          div
+            i.question I wasn’t able to find in the example code anywhere that Holdoff time was being set to some value. Should I leave it in the device as is (don’t set it), or set it to zero?  Is zero the right value when the cables are of matching lengths?  
+            strong.answer The default holdoff delay is 190ns.  If the the effect of the cable lengths is enough to cause a different desired delay, then having non-matching cable lengths is not ideal.  The holdoff delay is a single setting applied to both eyes. The holdoff value can be calibrated per system for best performance (typically somewhere between 140 and 210).  It should be apparent as you're changing the values what looks best, but if you have further questions let us know.  We will be providing you the ideal value in a document with the unit though. 
+        br
+        li.blocks
+          div
+            i.question I assume that the values listed in release.yaml in the example code, are general values which aren’t tailored to our system.  Or are they specifically ours?  
+            strong.answer Typically the values in the release.yaml are general values.  We will be providing values tailored to your system either directly in the release.yaml or in a separate document.
+        br
+        li.blocks
+          div
+            i.question Would it be possible to have the proper values for our system determined, or have the tuning process described, so that I know what I should set them to? If that can be done here when the system is delivered, that would be fine, since that would allow me to see how it’s done 
+            strong.answer We can walk you through the tuning process when the system is delivered. We will be providing you with values tailored to your system.
+        br
+        li.blocks
+          div
+            i.question Or are they stored in the system somehow, having become the new default, so that I don’t need to re-set them every time I power on? 
+            strong.answer They are currently not stored in system so they will be need to be reset every time the system is powered on. 
+        br
+        li.blocks
+          div
+            i.question There’s a value in the release.yaml file, luminar_blue _range_offset (and green), which isn’t sent to the sensor, but is used in the code to calculate the range from the return times. It’s set to -26.4 for both eyes.  Will this value need to be calibrated, or is this the correct value for us? 
+            strong.answer This will need to be calibrated 
+        br
+        li.blocks
+          div
+            i.question Do adjustments to ADC Phase Offset change the physical angle of samples, or only their reported angle?   
+            strong.answer It changes both. It shifts the scan phase of the beam relative to when we sample. 
+        br
+        li.blocks
+          div
+            i.question How much real (physical) variation is there in a given index sample’s azimuth/elevation angles, from frame to frame? How much is this impacted by vehicle vibration and bumps? 
+            strong.answer There may be variations but from our current observations there is no significant impact observed.  
+        br
+        li.blocks
+          div
+            i.question It appears that samples with a given index don’t shift their physical angle between frames (other than Range Walk causing the reported angle to jostle around).  Is this true, or does the physical angle drift (and I would assume wrap)? 
+            strong.answer The azimuth and elevation coordinates of a typical pixel (given by its index) exhibit good frame-to-frame precision. The standard deviation values for the azimuth and elevation angles of a pixel situated in the middle of a frame are around 0.07 degrees for azimuth, and 0.01 degrees for elevation, respectively. If filtering is performed, these values drop significantly to around 0.005 degrees for azimuth and 0.005 degrees for elevation, respectively. These data points have been measured in 1Hz mode.
+        br
+        li.blocks
+          div
+            i.question ‎Something I'm currently pondering is how to determine optimal threshold level, considering that I want as much valid data as possible (irrespective to amount of false samples), but if I lower the threshold too far, multiple returns may blend together.   Would you say that controlling threshold to maximize total number of returns is a reasonable approach? Or would this condition actually yield less valid returns? 
+            strong.answer We are recommending that the user set the threshold in dark conditions (as in laser is off) to a false alarm rate(FAR) of 1 kHz
+        br
+        li.blocks
+          div
+            i.question Oversaturation that occurs for retro-reflectors, causes the a chunk of samples following it to have no returns, followed then by bogus samples for a while, before returning to valid data.  Do you have a time frame for when this will be improved, or a suggestion for a strategy to detect this condition, so that I can invalidate the bogus samples, as well as consider the dead samples immediately following the retro-reflector, not as no-return (such as for sky), but rather as unreadable?
+            strong.answer We will be addressing that behavior with the upcoming release of our new detector architecture. You can mitigate the behavior by using post-processing nearest neighbor filtering. We can provide sample code if needed.  
+        br
+        li.blocks
+          div
+            i.question Are maybe the returns I mentioned before as having a rising edge without falling edge, related to the above mentioned oversaturation? 
+            strong.answer The currently available sensor suffers from a less than adequate pulse-pair resolution, which is the minimum time interval at which each pulse can be separated. in addition, the current sensor is totally asynchronous and cannot be reset. The main symptom of this limitation is that the sensor tales a relatively long time to clear after a saturating event. Accordingly, a strongly saturated pixel may be missing a falling edge and may corrupt a sequence of pixels downstream in the direction of scan, while it stays saturated (an artifact called "target tearing"). In our experience, the number of pixels that may exhibit these artifacts is small, well under 1% in a regular urban traffic scene and even less in a natural scene with few reflective surfaces. The vast majority of these pixels are from target tearing, after the beam hit a strong reflector such as a license plate, a rear view mirror, or a traffic sign. The number of pixels without a falling edge that do not originate from a target tearing artifact is typically in the single or double digits within a 1Hz (640 x 1000) frame. To fix target tearing, one could resort to image processing solutions such as a nearest neighbor -type filter, where the corrupted pixels are replaced with the closest valid neighbor. The detection is also fairly simple: one would simply monitor the pulse width as given by the difference between the falling and the raising edge. When this difference is either negative, or too large, the pixel is corrupt. A library of algorithms of interest such as range walk compensation is available from Luminar upon request. However, the artifacts discussed above are not a priority for the company, since they will be resolved by default in the next generation sensor (which will be in production in the near future). The next generation sensor is a synchronous sensor that will be reset for every outgoing pulse. There will be not target tearing, only individual pixels that saturate "legitimately", when the target they hit warrants it.
+
+        br
+        li.blocks
+          div
+            i.question Is an indexed sample’s angle consistent turn-on to turn-on, or is this not determinable?  For instance, I’d like to make a lookup table for angle for each index.  Can I assume this is constant for each sensor, and store it as a calibration file, or do I need to determine it each time the unit powers on?  
+            strong.answer Need to determine it each time the unit powers on
+        br
+
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    
+    script(type='text/javascript', src='/js/search.js')
