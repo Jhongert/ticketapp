@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
 
-mongoose.connect('mongodb://localhost/ticketappdb');
-//mongoose.connect('mongodb://heroku_4962b7w2:4ak9oils3680dclgrhprn0js3b@ds139884.mlab.com:39884/heroku_4962b7w2');
+//mongoose.connect('mongodb://localhost/ticketappdb');
+mongoose.connect('mongodb://heroku_1ckt89vm:meultnnq5dorikshr9o23r00a4@ds111258.mlab.com:11258/heroku_1ckt89vm');
 
 var db = mongoose.connection;
 
