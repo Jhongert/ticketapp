@@ -22,7 +22,7 @@
 
   path = require("path");
 
-  _ = require("underscore");
+ // _ = require("underscore");
 
   debuglog = require("debug")("ticketman:server");
 
