@@ -18,7 +18,7 @@
     app.post('/tickets/:id/complete', controller.complete);
     app.post('/tickets/:id/giveup', controller.giveup);
     app.post('/tickets/:id/comment', controller.adminComment);
-    app.post('/api/tickets/new', controller.create);
+    //app.post('/api/tickets/new', controller.create);
     app.put('/api/tickets/assign', m.authWorker, controller.assign);
     app.put('/api/tickets/:id/comment', m.authWorker, m.updateWorkerAt, controller.comment);
     app.put('/api/tickets/:id/complete', m.authWorker, controller.complete);
