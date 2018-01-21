@@ -2,12 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-const user = require('./user.js');
-const help = require('./help.js');
-const faqs = require('./faqs.js');
-const pig = require('./pig.js');
-const sdk = require('./sdk.js');
-const sampledata = require('./sampledata.js');
+const routes = require('./routes');
 
 const env = {
   AUTH0_CLIENT_ID: 'YgOyoROHdEqHodKl1apjFd_xRmXd6ihn',
@@ -39,7 +34,6 @@ router.get('/logout', function(req, res) {
   
 });
 
-
 router.get('/callback',
   passport.authenticate('auth0', {
     failureRedirect: '/failure'
@@ -59,12 +53,6 @@ router.get('/failure', function(req, res) {
   });
 });
 
-router.use('/user', user);
-router.use('/help', help);
-router.use('/faqs', faqs);
-router.use('/pig', pig);
-router.use('/sdk', sdk);
-router.use('/sampledata', sampledata);
-
+router.use('/', routes);
 
 module.exports = router;

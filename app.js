@@ -9,10 +9,14 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
+const config = require('./config/config');
 
 dotenv.load();
 
 const routes = require('./routes/index');
+const api = require('./routes/api');
+
+//const routes = require('./routes/routes');
 
 // This will configure Passport to use Auth0
 const strategy = new Auth0Strategy(
@@ -86,21 +90,14 @@ app.use(function(req, res, next) {
   next();
 });
 
+var db = require('./config/connection');
+
+
+//require("./models/worker");
+
 app.use('/', routes);
+app.use('/api', api);
 
- //Models
-// var models = require("./models");
- 
-
-// models.sequelize.sync().then(function() {
- 
-//     console.log('Nice! Database looks fine')
- 
-// }).catch(function(err) {
- 
-//     console.log(err, "Something went wrong with the Database Update!")
- 
-// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
