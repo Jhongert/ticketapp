@@ -126,7 +126,7 @@
   };
 
   exports.create = function(req, res, next) {
-    res.json(req.user.displayname);
+    res.json(req.user._json);
     // var ticket, title;
     // debuglog("create");
     // title = (req.body || {}).title;
