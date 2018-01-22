@@ -7,7 +7,7 @@ const routes = require('./routes');
 const env = {
   AUTH0_CLIENT_ID: 'YgOyoROHdEqHodKl1apjFd_xRmXd6ihn',
   AUTH0_DOMAIN: 'jhongertf.auth0.com',
-  AUTH0_CALLBACK_URL: 'https://hidden-tor-70059.herokuapp.com/callback'
+  AUTH0_CALLBACK_URL: 'https://frozen-savannah-98046.herokuapp.com/callback'
     //process.env.AUTH0_CALLBACK_URL || 'https://hidden-crag-53375.herokuapp.com/callback'
 };
 
