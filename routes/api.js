@@ -6,11 +6,11 @@ const router = express.Router();
 var controller;
 controller = require("../ticketman/lib/controllers/ticket");
 
-router.get('/tickets', controller.index);
-router.get('/tickets/count.json', controller.count);
-router.get('/tickets/list.json', controller.list);
-router.post('/tickets/new', controller.create);
-router.get('/tickets/user', controller.user);
+router.get('/tickets', ensureLoggedIn, controller.index);
+router.get('/tickets/count.json', ensureLoggedIn, controller.count);
+router.get('/tickets/list.json', ensureLoggedIn, controller.list);
+router.post('/tickets/new', ensureLoggedIn, controller.create);
+router.get('/tickets/user', ensureLoggedIn, controller.user);
 
 // router.get('/help', ensureLoggedIn, function(req, res, next){
 // 	res.render('help');
