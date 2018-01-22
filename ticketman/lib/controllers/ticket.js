@@ -26,6 +26,10 @@
     });
   };
 
+  exports.user = function(req, res, next){
+    res.json(req.user);
+  }
+
   exports.company = function(req, res, next) {
     req.session.company = req.params.company || '';
     res.redirect('/');
@@ -122,7 +126,7 @@
   };
 
   exports.create = function(req, res, next) {
-    res.json(req.user);
+    res.json(req.user.displayname);
     // var ticket, title;
     // debuglog("create");
     // title = (req.body || {}).title;

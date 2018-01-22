@@ -10,6 +10,7 @@ router.get('/tickets', controller.index);
 router.get('/tickets/count.json', controller.count);
 router.get('/tickets/list.json', controller.list);
 router.post('/tickets/new', controller.create);
+router.get('/tickets/user', controller.user);
 
 // router.get('/help', ensureLoggedIn, function(req, res, next){
 // 	res.render('help');
