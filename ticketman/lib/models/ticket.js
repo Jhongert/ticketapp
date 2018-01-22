@@ -77,7 +77,7 @@
     return val.length;
   }, 'Email cannot be blank');
 
-  TicketSchema.path('companny').validate(function(val) {
+  TicketSchema.path('company').validate(function(val) {
     return val.length;
   }, 'Company cannot be blank');
 
