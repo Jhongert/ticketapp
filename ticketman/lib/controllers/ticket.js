@@ -122,7 +122,6 @@
   };
 
   exports.create = function(req, res, next) {
-    console.log(req.user);
     res.send(req.user);
     // var ticket, title;
     // debuglog("create");

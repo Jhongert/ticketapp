@@ -13,7 +13,7 @@ $("#addTicket").on("click", function(event){
 	}
 	
 	$.post("/api/tickets/new",data , function(ticket, err){
-		console.log(data);
+		console.log(ticket);
 
 		//$("#ticketIdHolder").append("<h3>"+"Your Ticket ID is: "+ ticket.id+ "</h3>").prepend("<h3>"+yourTickId+"</h3>");
 
