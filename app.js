@@ -24,7 +24,7 @@ const strategy = new Auth0Strategy(
     domain: 'jhongertf.auth0.com',
     clientID: 'YgOyoROHdEqHodKl1apjFd_xRmXd6ihn',
     clientSecret: 'nqW02W5O0gVUwTMXjfO7dlTCPtMfwBJdN7J0Dw4pdpMOP_uKfIMrzDa627PopbcK',
-    callbackURL: 'https://hidden-tor-70059.herokuapp.com/callback'
+    callbackURL: 'https://frozen-savannah-98046.herokuapp.com/callback'
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
