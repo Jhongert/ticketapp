@@ -61,7 +61,7 @@ block content
             .col-md-1 status
             .col-md-2 id
             .col-md-5 title
-            .col-md-1 category
+            .col-md-1 priority
             .col-md-1.text-right created
             .col-md-1.text-right updated
             .col-md-1 Attempts
@@ -80,7 +80,7 @@ block content
                   small
                     code=ticket.id
                 .col-md-5=ticket.title
-                .col-md-1=ticket.category
+                .col-md-1=ticket.priority
                 .col-md-1.text-right
                   !=helper.genDateTag(ticket.created_at)
                 .col-md-1.text-right
@@ -106,16 +106,10 @@ block content
                 input#myTitle.form-control(type='text', placeholder='Ticket Title')
                 label(for='form3')
               .form-group
-                input#myCategory.form-control(type='text', placeholder='Category')
-                label(for='form4')
-              .form-group
                 input#myPriority.form-control(type='text', placeholder='Priority (type High, Medium, or Low)')
                 label(for='form5')
               .form-group
-                input#myEmail.form-control(type='text', placeholder='Email')
-                label(for='form6')
-              .form-group
-                textarea#form6.md-textarea(type='text', style='height: 100px')
+                textarea#form6.md-textarea(type='text', style='height: 100px; width: 100%')
                 label(for='form7')
           .modal-footer
             button.btn.btn-default(type='button', data-dismiss='modal') Close

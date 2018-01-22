@@ -126,31 +126,30 @@
   };
 
   exports.create = function(req, res, next) {
-    
-    // var ticket, title;
-    // debuglog("create");
-      title = (req.body || {}).title;
-      req.body.email = req.user._json.email;
-      req.body.company = req.user._json["http://app/user_metadata"].company;
-      req.body.owner_id = req.user.nickname;
-      req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
-      res.send(req.body);
-    // ticket = new Ticket(req.body);
-    // ticket.save((function(_this) {
-    //   return function(err) {
-    //     if (err != null) {
-    //       return res.json({
-    //         success: false,
-    //         error: err.toString()
-    //       });
-    //     } else {
-    //       return res.json({
-    //         success: true,
-    //         ticket: ticket
-    //       });
-    //     }
-    //   };
-    // })(this));
+    var ticket, title;
+    debuglog("create");
+    title = (req.body || {}).title;
+    req.body.email = req.user._json.email;
+    req.body.company = req.user._json["http://app/user_metadata"].company;
+    req.body.owner_id = req.user.nickname;
+    req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
+    res.send(req.body);
+    ticket = new Ticket(req.body);
+    ticket.save((function(_this) {
+      return function(err) {
+        if (err != null) {
+          return res.json({
+            success: false,
+            error: err.toString()
+          });
+        } else {
+          return res.json({
+            success: true,
+            ticket: ticket
+          });
+        }
+      };
+    })(this));
   };
 
   exports.assign = function(req, res, next) {
