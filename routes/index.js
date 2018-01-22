@@ -22,7 +22,7 @@ router.get('/login', passport.authenticate('auth0', {
   redirectUri: env.AUTH0_CALLBACK_URL,
   responseType: 'code',
   audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
-  scope: 'openid profile user_metadata'}),
+  scope: 'openid email profile user_metadata'}),
   function(req, res) {
     res.redirect("/");
 });
