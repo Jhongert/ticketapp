@@ -60,12 +60,14 @@
   };
 
   exports.count = function(req, res, next) {
-    var result, query;
+    var result, query, company;
     result = {};
     query = {};
 
-    if(req.session.company !== "luminar"){
-      query.company = req.session.company;
+    company = req.user._json["http://app/user_metadata"].company;
+
+    if(company !== "luminar"){
+      query.company = company;
     }
 
 
