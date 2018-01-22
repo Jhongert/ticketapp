@@ -37,12 +37,14 @@
 
   exports.list = function(req, res, next) {
 
-    var query;
+    var query, company;
     debuglog("list req.query: %j", req.query);
     query = Ticket.paginate(req.query || {}, '_id').select('-comments -content');
 
-    if(req.session.company !== 'luminar'){
-      query.where({company: req.session.company});
+    company = req.user._json["http://app/user_metadata"].company;
+
+    if(company !== "luminar"){
+      query.where({company: company});
     }
 
     if (req.query.status != null) {
