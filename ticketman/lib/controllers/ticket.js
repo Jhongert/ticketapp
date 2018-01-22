@@ -122,8 +122,8 @@
   };
 
   exports.create = function(req, res, next) {
-    console.log(req.user._json["http://app/user_metadata"].company);
-    res.send(req.user);
+    //console.log(req.user._json["http://app/user_metadata"].company);
+    res.send(req.body);
     // var ticket, title;
     // debuglog("create");
     // title = (req.body || {}).title;
