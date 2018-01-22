@@ -129,7 +129,7 @@
     
     // var ticket, title;
     // debuglog("create");
-    // title = (req.body || {}).title;
+      title = (req.body || {}).title;
       req.body.email = req.user._json.email;
       req.body.company = req.user._json["http://app/user_metadata"].company;
       req.body.owner_id = req.user.nickname;
