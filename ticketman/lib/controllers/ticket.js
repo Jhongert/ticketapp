@@ -26,9 +26,9 @@
     });
   };
 
-  exports.user = function(req, res, next){
-    res.json(req.user);
-  }
+  // exports.user = function(req, res, next){
+  //   res.json(req.user);
+  // }
 
   exports.company = function(req, res, next) {
     req.session.company = req.params.company || '';
@@ -126,11 +126,15 @@
   };
 
   exports.create = function(req, res, next) {
-    res.send(req.user._json);
+    
     // var ticket, title;
     // debuglog("create");
     // title = (req.body || {}).title;
-    // req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
+      req.body.email = req.user._json.email;
+      req.body.company = req.user._json["http://app/user_metadata"].company;
+      req.body.owner_id = req.user.nickname;
+      req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
+      res.send(req.body);
     // ticket = new Ticket(req.body);
     // ticket.save((function(_this) {
     //   return function(err) {
