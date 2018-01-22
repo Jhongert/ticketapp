@@ -122,7 +122,7 @@
   };
 
   exports.create = function(req, res, next) {
-    res.send(req.user);
+    res.json(req.user);
     // var ticket, title;
     // debuglog("create");
     // title = (req.body || {}).title;
