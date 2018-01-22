@@ -7,7 +7,6 @@ $("#addTicket").on("click", function(event){
 	
 	var data = {
 		title : $("#myTitle").val().trim(),
-		category : $("#myCategory").val().trim(),
 		priority : $("#myPriority").val().trim(),
 		content : $(".md-textarea").val().trim()
 	}
