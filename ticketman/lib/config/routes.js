@@ -12,7 +12,7 @@
     app.get('/tickets/company/:company', controller.company);
     //app.get('/tickets/list.json', controller.list);
     //app.get('/tickets/count.json', controller.count);
-    app.get('/tickets/:id', controller.show);
+    //app.get('/tickets/:id', controller.show);
     app.get('/tickets/:token/status', controller.showStatus);
     app.post('/tickets/:id/abandon', controller.abandon);
     app.post('/tickets/:id/complete', controller.complete);
