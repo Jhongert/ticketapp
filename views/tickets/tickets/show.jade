@@ -134,7 +134,7 @@ block content
               !=" Abandon"
 
   #myModal3.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel3', aria-hidden='true')
-    form.complete(action="/tickets/#{ticket.id}/complete", method="POST")
+    form.complete(action="api/tickets/#{ticket.id}/complete", method="POST")
       .modal-dialog
         .modal-content
           .modal-header

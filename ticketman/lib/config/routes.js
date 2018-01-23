@@ -15,7 +15,7 @@
     //app.get('/tickets/:id', controller.show);
     app.get('/tickets/:token/status', controller.showStatus);
     //app.post('/tickets/:id/abandon', controller.abandon);
-    app.post('/tickets/:id/complete', controller.complete);
+    //app.post('/tickets/:id/complete', controller.complete);
     app.post('/tickets/:id/giveup', controller.giveup);
     app.post('/tickets/:id/comment', controller.adminComment);
     //app.post('/api/tickets/new', controller.create);

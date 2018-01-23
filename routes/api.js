@@ -11,7 +11,8 @@ router.get('/tickets/count.json', ensureLoggedIn, controller.count);
 router.get('/tickets/list.json', ensureLoggedIn, controller.list);
 router.post('/tickets/new', ensureLoggedIn, controller.create);
 router.get('/tickets/:id', ensureLoggedIn, controller.show);
-router.post('/tickets/:id/abandon', controller.abandon);
+router.post('/tickets/:id/abandon', ensureLoggedIn, controller.abandon);
+router.post('/tickets/:id/complete', ensureLoggedIn, controller.complete);
 //router.get('/tickets/user', ensureLoggedIn, controller.user);
 
 // router.get('/help', ensureLoggedIn, function(req, res, next){
