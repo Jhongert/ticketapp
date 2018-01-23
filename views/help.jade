@@ -1,5 +1,6 @@
 extends layout
 
+  link(rel='stylesheet', href='/ticketman/css/bootstrap-theme.min.css')
 block content
 
     .wrapper.clearfix
@@ -126,7 +127,7 @@ block content
           if(jQuery(".timeago").length > 0) jQuery(".timeago").prettyDate();
         });
       }
-  
+
     script(type='text/javascript', src='/js/tickets.js')
       
 
