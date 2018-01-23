@@ -52,7 +52,7 @@ if(window.jQuery){
 	    	if($(".timeago").length > 0) $(".timeago").prettyDate({"interval":false});
 	  	},
 	  	formatItem: function(item) {
-	    	return "<a href=\"/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">" + (genLabelByStatus(item.status)) + " </div>\n  <div class=\"col-md-3\"><small><code>" + item._id + "</code></small></div>\n  <div class=\"col-md-4\">" + item.title + "</div>\n  <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-1 text-right\">" + (genDateTag(item.created_at)) + "</div>\n  <div class=\"col-md-1 text-right\">" + (genDateTag(item.updated_at)) + "</div>\n  <div class=\"col-md-1\">" + item.attempts + "</div></div></a>";
+	    	return "<a href=\"api/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">" + (genLabelByStatus(item.status)) + " </div>\n  <div class=\"col-md-3\"><small><code>" + item._id + "</code></small></div>\n  <div class=\"col-md-4\">" + item.title + "</div>\n  <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-1 text-right\">" + (genDateTag(item.created_at)) + "</div>\n  <div class=\"col-md-1 text-right\">" + (genDateTag(item.updated_at)) + "</div>\n  <div class=\"col-md-1\">" + item.attempts + "</div></div></a>";
 	  	}
 
 	});

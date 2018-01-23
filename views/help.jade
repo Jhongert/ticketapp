@@ -72,7 +72,7 @@ block content
 
         #list.list-group
           each ticket in tickets
-            a.list-group-item(href="/tickets/#{ticket.id}")
+            a.list-group-item(href="api/tickets/#{ticket.id}")
               .row
                 .col-md-1
                   !=helper.genLabelByStatus(ticket.status)
