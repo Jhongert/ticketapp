@@ -122,7 +122,7 @@
       if (err != null) {
         return next(err);
       }
-      res.render('tickets/show', {
+      res.render('tickets/tickets/show', {
         title: 'All Tickets',
         ticket: ticket
       });
