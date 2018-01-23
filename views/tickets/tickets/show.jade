@@ -39,13 +39,13 @@ block content
       .col-md-1.input-lg.text-muted  Priority:
       .col-md-3.input-lg=ticket.priority
 
-      .col-md-9.text-right
+      .col-md-8.text-right
         button.btn.btn-default(data-toggle="modal", data-target="#myModal")
           i.fa.fa-edit
           !=" Add Comment"
 
 
-      .col-md-1.text-right
+      .col-md-2.text-right
        
         if ticket.status == "pending"
           button.btn.btn-success(data-toggle="modal", data-target="#myModal3")
@@ -61,7 +61,7 @@ block content
             i.fa.fa-complete
             !=" Complete"
 
-      .col-md-1.text-right
+      .col-md-2.text-right
 
         if ticket.status == "pending"
           button.btn.btn-danger(data-toggle="modal", data-target="#myModal2")
@@ -78,25 +78,25 @@ block content
             !=" Abandon"
 
 
+  .wrapper
+    h2
+      small Content
+    .well
+      pre
+        !=helper.syntaxHighlight(JSON.stringify(ticket.content,undefined, 4))
 
-  h2
-    small Content
-  .well
-    pre
-      !=helper.syntaxHighlight(JSON.stringify(ticket.content,undefined, 4))
+    h2
+      small History
 
-  h2
-    small History
-
-  ul.list-group
-    each comment in ticket.comments
-      li.list-group-item
-        .row
-          .col-md-2.text-right
-            span.label(class="label-#{comment.kind}")=comment.name
-          .col-md-8=comment.content
-          .col-md-2
-            !=helper.genDateTag(comment.date)
+    ul.list-group
+      each comment in ticket.comments
+        li.list-group-item
+          .row
+            .col-md-2.text-right
+              span.label(class="label-#{comment.kind}")=comment.name
+            .col-md-8=comment.content
+            .col-md-2
+              !=helper.genDateTag(comment.date)
 
   #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     form.comment(action="/tickets/#{ticket.id}/comment", method="POST")
