@@ -140,19 +140,21 @@
     res.send(req.body);
     ticket = new Ticket(req.body);
     ticket.save((function(_this) {
-      return function(err) {
-        if (err != null) {
-          return res.json({
-            success: false,
-            error: err.toString()
-          });
-        } else {
-          return res.json({
-            success: true,
-            ticket: ticket
-          });
-        }
-      };
+      return res.redirect("/help");
+      // return function(err) {
+      //   if (err != null) {
+      //     return res.json({
+      //       success: false,
+      //       error: err.toString()
+      //     });
+      //   } else {
+      //     return res.json({
+      //       success: true,
+      //       ticket: ticket
+      //     });
+      //   }
+      // };
+      }
     })(this));
   };
 
@@ -215,7 +217,7 @@
       if (ticket == null) {
         return next();
       }
-      return res.json(ticket);
+      return res.redirect("/help");
     });
   };
 
