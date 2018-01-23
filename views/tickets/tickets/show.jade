@@ -1,83 +1,82 @@
 extends ../../layout
+  
+    block content
+      .wrapper
+        ol.breadcrumb
+          li
+            a(href="/tickets") Tickets
+          li.active
+            Detais
 
-
-block content
-  .wrapper
-    block pageHeader
-      ol.breadcrumb
-        li
-          a(href="/tickets") Tickets
-        li.active
-          Detais
-
-      .page-header
-        h1=ticket.title
-          small #
-            =ticket.id
+        .page-header
+          h1=ticket.title
+            small #
+              =ticket.id
 
     block content
-      .row
+      .wrapper
+        .row
 
-        .col-md-1.input-lg.text-muted  owner:
-        .col-md-3.input-lg=ticket.owner_id
+          .col-md-1.input-lg.text-muted  owner:
+          .col-md-3.input-lg=ticket.owner_id
 
-        .col-md-1.input-lg.text-muted  customer:
-        .col-md-3.input-lg=ticket.company
+          .col-md-1.input-lg.text-muted  customer:
+          .col-md-3.input-lg=ticket.company
 
-        .col-md-1.input-lg.text-muted  status:
-        .col-md-3.input-lg
-          !=helper.genLabelByStatus(ticket.status)
+          .col-md-1.input-lg.text-muted  status:
+          .col-md-3.input-lg
+            !=helper.genLabelByStatus(ticket.status)
 
-        .col-md-1.input-lg.text-muted  updated:
-        .col-md-3.input-lg
-          !=helper.genDateTag(ticket.updated_at)
-        .col-md-1.input-lg.text-muted  created:
-        .col-md-3.input-lg
-          !=helper.genDateTag(ticket.created_at)
-        
-        .col-md-1.input-lg.text-muted  attempts:
-        .col-md-3.input-lg=ticket.attempts
+          .col-md-1.input-lg.text-muted  updated:
+          .col-md-3.input-lg
+            !=helper.genDateTag(ticket.updated_at)
+          .col-md-1.input-lg.text-muted  created:
+          .col-md-3.input-lg
+            !=helper.genDateTag(ticket.created_at)
+          
+          .col-md-1.input-lg.text-muted  attempts:
+          .col-md-3.input-lg=ticket.attempts
 
-        .col-md-1.input-lg.text-muted  Priority:
-        .col-md-3.input-lg=ticket.priority
+          .col-md-1.input-lg.text-muted  Priority:
+          .col-md-3.input-lg=ticket.priority
 
-        .col-md-9.text-right
-          button.btn.btn-default(data-toggle="modal", data-target="#myModal")
-            i.fa.fa-edit
-            !=" Add Comment"
+          .col-md-9.text-right
+            button.btn.btn-default(data-toggle="modal", data-target="#myModal")
+              i.fa.fa-edit
+              !=" Add Comment"
 
 
-        .col-md-1.text-right
-         
-          if ticket.status == "pending"
-            button.btn.btn-success(data-toggle="modal", data-target="#myModal3")
-              i.fa.fa-complete
-              !=" Complete"
+          .col-md-1.text-right
+           
+            if ticket.status == "pending"
+              button.btn.btn-success(data-toggle="modal", data-target="#myModal3")
+                i.fa.fa-complete
+                !=" Complete"
 
-            //form.complete(action="/tickets/#{ticket.id}/complete", method="POST")
-              //button.btn.btn-danger(type='submit')
-                //i.fa.fa-complete
-                //!=" Complete"
-          else
-            button.btn.btn-success(disabled="true")
-              i.fa.fa-complete
-              !=" Complete"
+              //form.complete(action="/tickets/#{ticket.id}/complete", method="POST")
+                //button.btn.btn-danger(type='submit')
+                  //i.fa.fa-complete
+                  //!=" Complete"
+            else
+              button.btn.btn-success(disabled="true")
+                i.fa.fa-complete
+                !=" Complete"
 
-        .col-md-1.text-right
+          .col-md-1.text-right
 
-          if ticket.status == "pending"
-            button.btn.btn-danger(data-toggle="modal", data-target="#myModal2")
-              i.fa.fa-trash-o
-              !=" Abandon"
+            if ticket.status == "pending"
+              button.btn.btn-danger(data-toggle="modal", data-target="#myModal2")
+                i.fa.fa-trash-o
+                !=" Abandon"
 
-            //form.abandon(action="/tickets/#{ticket.id}/abandon", method="POST")
-              //button.btn.btn-danger(type='submit')
-                //i.fa.fa-trash-o
-                //!=" Abandon"
-          else
-            button.btn.btn-danger(disabled="true")
-              i.fa.fa-trash-o
-              !=" Abandon"
+              //form.abandon(action="/tickets/#{ticket.id}/abandon", method="POST")
+                //button.btn.btn-danger(type='submit')
+                  //i.fa.fa-trash-o
+                  //!=" Abandon"
+            else
+              button.btn.btn-danger(disabled="true")
+                i.fa.fa-trash-o
+                !=" Abandon"
 
 
 
