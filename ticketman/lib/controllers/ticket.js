@@ -290,7 +290,7 @@
         if (ticket == null) {
           return next();
         }
-        return res.redirect("/tickets");
+        return res.redirect("/help");
       });
     });
   };

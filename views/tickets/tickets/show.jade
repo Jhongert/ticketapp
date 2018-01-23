@@ -117,7 +117,7 @@ block content
 
 
   #myModal2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel2', aria-hidden='true')
-    form.abandon(action="/tickets/#{ticket.id}/abandon", method="POST")
+    form.abandon(action="api/tickets/#{ticket.id}/abandon", method="POST")
       .modal-dialog
         .modal-content
           .modal-header
