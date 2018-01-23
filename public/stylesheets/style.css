@@ -120,7 +120,7 @@ h3 {
 
 .wrapper {
   margin: 0 auto 0 auto;
-  max-width: 900px;
+  max-width: 960px;
   height: auto;
 }
 .wrapper1 {
@@ -354,3 +354,11 @@ box-shadow:
 .search_1:focus{
 outline:0;
 }
+
+/* for ticketman */
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
