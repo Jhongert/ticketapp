@@ -13,6 +13,7 @@ router.post('/tickets/new', ensureLoggedIn, controller.create);
 router.get('/tickets/:id', ensureLoggedIn, controller.show);
 router.post('/tickets/:id/abandon', ensureLoggedIn, controller.abandon);
 router.post('/tickets/:id/complete', ensureLoggedIn, controller.complete);
+router.post('/tickets/:id/comment', ensureLoggedIn, controller.adminComment);
 //router.get('/tickets/user', ensureLoggedIn, controller.user);
 
 // router.get('/help', ensureLoggedIn, function(req, res, next){

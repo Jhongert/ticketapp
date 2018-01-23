@@ -315,7 +315,7 @@
       if (ticket == null) {
         return next();
       }
-      return res.redirect("/tickets/" + id);
+      return res.redirect("/api/tickets/" + id);
     });
   };
 

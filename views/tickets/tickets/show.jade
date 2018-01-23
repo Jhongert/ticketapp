@@ -99,7 +99,7 @@ block content
               !=helper.genDateTag(comment.date)
 
   #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-    form.comment(action="/tickets/#{ticket.id}/comment", method="POST")
+    form.comment(action="/api/tickets/#{ticket.id}/comment", method="POST")
       .modal-dialog
         .modal-content
           .modal-header
