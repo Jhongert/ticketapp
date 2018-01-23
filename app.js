@@ -11,6 +11,8 @@ const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const config = require('./config/config');
 
+view_helper = require("./ticketman/lib/utils/view_helper");
+
 dotenv.load();
 
 const routes = require('./routes/index');
