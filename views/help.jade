@@ -116,16 +116,16 @@ block content
               button.btn.btn-primary(type='submit') Submit Ticket
               
 
-    script(src='ticketman/js/endless_scroll/jquery.scroll-on-mongoose.js', type='text/javascript')
-    script(src='ticketman/js/jquery.prettydate.js', type='text/javascript')
-    // active jQuery timeago
-    script(type='text/javascript').
-      if(jQuery){
-        jQuery(document).ready(function() {
-          if(jQuery(".timeago").length > 0) jQuery(".timeago").prettyDate();
-        });
-      }
+script(src='ticketman/js/endless_scroll/jquery.scroll-on-mongoose.js', type='text/javascript')
+script(src='ticketman/js/jquery.prettydate.js', type='text/javascript')
+// active jQuery timeago
+script(type='text/javascript').
+  if(jQuery){
+    jQuery(document).ready(function() {
+      if(jQuery(".timeago").length > 0) jQuery(".timeago").prettyDate();
+    });
+  }
 
-    script(type='text/javascript', src='/js/tickets.js')
+script(type='text/javascript', src='/js/tickets.js')
       
 
