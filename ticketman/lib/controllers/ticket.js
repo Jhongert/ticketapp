@@ -2,6 +2,7 @@
 (function() {
   var MAX_ATTEMPTS_BEFORE_ABANDON, MAX_TIME_ALLOWED_FOR_PROCESSING, STATUS, Ticket, crypto, debuglog, mongoose;
 
+  const nodemailer = require("nodemailer");
   mongoose = require('mongoose');
 
   require('../models/ticket');
@@ -24,15 +25,6 @@
       title: 'All Tickets',
       tickets: []
     });
-  };
-
-  // exports.user = function(req, res, next){
-  //   res.json(req.user);
-  // }
-
-  exports.company = function(req, res, next) {
-    req.session.company = req.params.company || '';
-    res.redirect('/');
   };
 
   exports.list = function(req, res, next) {
@@ -72,8 +64,6 @@
       query.company = company;
     }
 
-
-    //Ticket.count({company:req.session.company}, function(err, count) {
       Ticket.count(query, function(err, count) {
       if (err != null) {
         next(err);
@@ -139,6 +129,38 @@
     req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
     ticket = new Ticket(req.body);
     ticket.save((function(_this) {
+
+      //send email upon pressing the 'Add Ticket' button
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        secure: false,
+        port: 25,
+        auth: {
+            user: 'maria.saavedra@luminartech.com',
+            pass: 'Hayden25!'
+        },
+        tls: {
+          rejectUnauthorized: false
+        }
+      });
+      //Body of email message
+      let HelperOptions = {
+        from: ticket.nickname + ' &lt;' + ticket.email + '&gt;',
+        to: 'jhongertf@gmail.com',
+        //to: 'customersupport@luminartech.com',
+        subject:'Ticket Submission',
+        text:"From:" +ticket.owner_id +"\n"+ "\n"+ "Email: " + ticket.email+"\n" + "\n"+ "Priority: " +ticket.priority +"\n"+ "\n"+ "TicketID: " + ticket.id +"\n" +"\n" + "Ticket Content: " +ticket.content 
+      };
+
+      //sends mail
+      transporter.sendMail(HelperOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log("The message was sent!");
+        console.log(info);
+      });
+
       res.redirect('/help');
       // return function(err) {
       //   if (err != null) {
