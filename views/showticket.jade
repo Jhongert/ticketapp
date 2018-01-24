@@ -16,24 +16,24 @@ block content
   .wrapper
     .row
 
-      .col-md-1.input-lg.text-muted  owner:
+      .col-md-1.input-lg.text-muted  Owner:
       .col-md-3.input-lg=ticket.owner_id
 
-      .col-md-1.input-lg.text-muted  customer:
+      .col-md-1.input-lg.text-muted  Company:
       .col-md-3.input-lg=ticket.company
 
-      .col-md-1.input-lg.text-muted  status:
+      .col-md-1.input-lg.text-muted  Status:
       .col-md-3.input-lg
         !=helper.genLabelByStatus(ticket.status)
 
-      .col-md-1.input-lg.text-muted  updated:
+      .col-md-1.input-lg.text-muted  Updated:
       .col-md-3.input-lg
         !=helper.genDateTag(ticket.updated_at)
-      .col-md-1.input-lg.text-muted  created:
+      .col-md-1.input-lg.text-muted  Created:
       .col-md-3.input-lg
         !=helper.genDateTag(ticket.created_at)
       
-      .col-md-1.input-lg.text-muted  attempts:
+      .col-md-1.input-lg.text-muted  Attempts:
       .col-md-3.input-lg=ticket.attempts
 
       .col-md-1.input-lg.text-muted  Priority:
