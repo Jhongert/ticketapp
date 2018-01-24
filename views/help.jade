@@ -103,13 +103,13 @@ block content
             .modal-body
               form(role='form')
                 .form-group
-                  input#myTitle.form-control(type='text', placeholder='Ticket Title')
+                  input#myTitle.form-control(type='text', placeholder='Ticket Title', name="title")
                   label(for='form3')
                 .form-group
-                  input#myPriority.form-control(type='text', placeholder='Priority (type High, Medium, or Low)')
+                  input#myPriority.form-control(type='text', placeholder='Priority (type High, Medium, or Low)', name="priority")
                   label(for='form5')
                 .form-group
-                  textarea#form6.md-textarea(type='text', style='height: 100px; width: 100%')
+                  textarea#form6.md-textarea(type='text', style='height: 100px; width: 100%', name="content")
                   label(for='form7')
             .modal-footer
               button.btn.btn-default(type='button', data-dismiss='modal') Close
