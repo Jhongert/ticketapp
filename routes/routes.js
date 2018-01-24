@@ -7,7 +7,7 @@ router.get('/faqs', ensureLoggedIn, function(req, res, next){
 	res.render('faqs');
 });
 
-router.get('/help', function(req, res, next){
+router.get('/help', ensureLoggedIn, function(req, res, next){
 	res.render('help', {
       title: 'All Tickets',
       tickets: []
