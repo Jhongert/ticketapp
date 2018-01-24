@@ -137,10 +137,9 @@
     req.body.company = req.user._json["http://app/user_metadata"].company;
     req.body.owner_id = req.user.nickname;
     req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
-    res.send(req.body);
     ticket = new Ticket(req.body);
     ticket.save((function(_this) {
-      return res.redirect("/help");
+      res.redirect('/help');
       // return function(err) {
       //   if (err != null) {
       //     return res.json({
@@ -153,7 +152,7 @@
       //       ticket: ticket
       //     });
       //   }
-      // };
+      //};
       
     })(this));
   };
