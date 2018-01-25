@@ -30,7 +30,6 @@
       type: Number,
       "default": 0
     },
-    category: String,
     status: {
       type: String,
       "default": STATUS.PENDING
@@ -70,21 +69,17 @@
     return val.length;
   }, 'Title cannot be blank');
 
-  // TicketSchema.path('priority').validate(function(val) {
-  //   return val.length;
-  // }, 'Priority cannot be blank');
-
-  // TicketSchema.path('email').validate(function(val) {
-  //   return val.length;
-  // }, 'Email cannot be blank');
-
-  // TicketSchema.path('companny').validate(function(val) {
-  //   return val.length;
-  // }, 'Company cannot be blank');
-
-  TicketSchema.path('category').validate(function(val) {
+  TicketSchema.path('priority').validate(function(val) {
     return val.length;
-  }, 'Category cannot be blank');
+  }, 'Priority cannot be blank');
+
+  TicketSchema.path('email').validate(function(val) {
+    return val.length;
+  }, 'Email cannot be blank');
+
+  TicketSchema.path('company').validate(function(val) {
+    return val.length;
+  }, 'Company cannot be blank');
 
   TicketSchema.path('content').validate(function(val) {
     return val != null;
@@ -94,33 +89,33 @@
     return val.length;
   }, 'Owner id cannot be blank');
 
-  TicketSchema.pre('save', function(next) {
-    var query, theTitle;
-    if (!this.isNew) {
-      return next();
-    }
-    query = {
-      $and: [
-        {
-          title: this.title
-        }, {
-          status: {
-            $not: new RegExp("(" + STATUS.COMPLETE + "|" + STATUS.ABANDON + ")")
-          }
-        }
-      ]
-    };
-    theTitle = this.title;
-    mongoose.model('Ticket').findOne(query, 'title', function(err, ticket) {
-      if (err != null) {
-        return next(err);
-      }
-      if (ticket != null) {
-        return next(new Error("ticket " + theTitle + " already exist"));
-      }
-      next();
-    });
-  });
+  // TicketSchema.pre('save', function(next) {
+  //   var query, theTitle;
+  //   if (!this.isNew) {
+  //     return next();
+  //   }
+  //   query = {
+  //     $and: [
+  //       {
+  //         title: this.title
+  //       }, {
+  //         status: {
+  //           $not: new RegExp("(" + STATUS.COMPLETE + "|" + STATUS.ABANDON + ")")
+  //         }
+  //       }
+  //     ]
+  //   };
+  //   theTitle = this.title;
+  //   mongoose.model('Ticket').findOne(query, 'title', function(err, ticket) {
+  //     if (err != null) {
+  //       return next(err);
+  //     }
+  //     if (ticket != null) {
+  //       return next(new Error("ticket " + theTitle + " already exist"));
+  //     }
+  //     next();
+  //   });
+  // });
 
   TicketSchema.statics.changeStatus = function(query, status, callback) {
     var update, where;

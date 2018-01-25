@@ -2,8 +2,10 @@
 (function() {
   var MAX_ATTEMPTS_BEFORE_ABANDON, MAX_TIME_ALLOWED_FOR_PROCESSING, STATUS, Ticket, crypto, debuglog, mongoose;
 
+  const nodemailer = require("nodemailer");
   mongoose = require('mongoose');
-  require("../models/ticket");
+
+  require('../models/ticket');
 
   Ticket = mongoose.model('Ticket');
 
@@ -19,25 +21,22 @@
 
   exports.index = function(req, res, next) {
     debuglog("index");
-    res.render('tickets/index', {
+    res.render('tickets/tickets/index', {
       title: 'All Tickets',
       tickets: []
     });
   };
 
-  exports.company = function(req, res, next) {
-    req.session.company = req.params.company || '';
-    res.redirect('/');
-  };
-
   exports.list = function(req, res, next) {
 
-    var query;
+    var query, company;
     debuglog("list req.query: %j", req.query);
     query = Ticket.paginate(req.query || {}, '_id').select('-comments -content');
 
-    if(req.session.company !== 'luminar'){
-      query.where({company: req.session.company});
+    company = req.user._json["http://app/user_metadata"].company;
+
+    if(company !== "luminar"){
+      query.where({company: company});
     }
 
     if (req.query.status != null) {
@@ -55,16 +54,16 @@
   };
 
   exports.count = function(req, res, next) {
-    var result, query;
+    var result, query, company;
     result = {};
     query = {};
 
-    if(req.session.company !== "luminar"){
-      query.company = req.session.company;
+    company = req.user._json["http://app/user_metadata"].company;
+
+    if(company !== "luminar"){
+      query.company = company;
     }
 
-
-    //Ticket.count({company:req.session.company}, function(err, count) {
       Ticket.count(query, function(err, count) {
       if (err != null) {
         next(err);
@@ -113,7 +112,7 @@
       if (err != null) {
         return next(err);
       }
-      res.render('tickets/show', {
+      res.render('showticket', {
         title: 'All Tickets',
         ticket: ticket
       });
@@ -124,22 +123,58 @@
     var ticket, title;
     debuglog("create");
     title = (req.body || {}).title;
+    req.body.email = req.user._json.email;
+    req.body.company = req.user._json["http://app/user_metadata"].company;
+    req.body.owner_id = req.user.nickname;
     req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
     ticket = new Ticket(req.body);
     ticket.save((function(_this) {
-      return function(err) {
-        if (err != null) {
-          return res.json({
-            success: false,
-            error: err.toString()
-          });
-        } else {
-          return res.json({
-            success: true,
-            ticket: ticket
-          });
+
+      //send email upon pressing the 'Add Ticket' button
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        secure: false,
+        port: 25,
+        auth: {
+            user: 'maria.saavedra@luminartech.com',
+            pass: 'Hayden25!'
+        },
+        tls: {
+          rejectUnauthorized: false
         }
+      });
+      //Body of email message
+      let HelperOptions = {
+        from: ticket.nickname + ' &lt;' + ticket.email + '&gt;',
+        to: 'customersupport@luminartech.com',
+        subject:'Ticket Submission',
+        text:"From:" +ticket.owner_id +"\n"+ "\n"+ "Email: " + ticket.email+"\n" + "\n"+ "Priority: " +ticket.priority +"\n"+ "\n"+ "TicketID: " + ticket.id +"\n" +"\n" + "Ticket Content: " +ticket.content 
       };
+
+      //sends mail
+      transporter.sendMail(HelperOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log("The message was sent!");
+        console.log(info);
+      });
+
+      res.redirect('/help');
+      // return function(err) {
+      //   if (err != null) {
+      //     return res.json({
+      //       success: false,
+      //       error: err.toString()
+      //     });
+      //   } else {
+      //     return res.json({
+      //       success: true,
+      //       ticket: ticket
+      //     });
+      //   }
+      //};
+      
     })(this));
   };
 
@@ -202,7 +237,7 @@
       if (ticket == null) {
         return next();
       }
-      return res.json(ticket);
+      return res.redirect("/help");
     });
   };
 
@@ -277,7 +312,7 @@
         if (ticket == null) {
           return next();
         }
-        return res.redirect("/tickets");
+        return res.redirect("/help");
       });
     });
   };
@@ -302,7 +337,7 @@
       if (ticket == null) {
         return next();
       }
-      return res.redirect("/tickets/" + id);
+      return res.redirect("/api/tickets/" + id);
     });
   };
 

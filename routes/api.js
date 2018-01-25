@@ -4,7 +4,7 @@ const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const router = express.Router();
 
 var controller;
-controller = require("../ticketman/lib/controllers/ticket");
+controller = require("../controllers/ticket");
 
 router.get('/tickets', ensureLoggedIn, controller.index);
 router.get('/tickets/count.json', ensureLoggedIn, controller.count);
