@@ -133,7 +133,14 @@ block scripts
         //Validate input
         $('#submit').on('click', function(e){
           e.preventDefault();
-          alert('click');
+
+          var title = $('#title').val().trim();
+          if(title === ""){
+            var label = $('<label class="has-error">');
+            label.text('Please enter a title');
+            $('#title').addClass('has-error').after(label);
+            return
+          }
         })
       });
     }
