@@ -138,6 +138,17 @@ block scripts
           $('.error').remove();
           $('.has-error').removeClass('has-error');
 
+          //validate the title
+          var title = $('#title');
+          if(!title.val().trim()){
+            var label = $('<label class="control-label error">');
+            label.text('Please enter a title');
+            title.after(label);
+            title.parent().addClass('has-error');
+            return
+          }
+
+          //validate the priority
           var priority = $('#priority').val();
           if(!priority){
             var label = $('<label class="control-label error">');
@@ -147,12 +158,13 @@ block scripts
             return
           }
 
-          var title = $('#title').val().trim();
-          if(title === ""){
+           //validate the content
+          var content = $('#content').val().trim();
+          if(!content){
             var label = $('<label class="control-label error">');
-            label.text('Please enter a title');
-            $('#title').after(label);
-            $('#title').parent().addClass('has-error');
+            label.text('Please enter the content');
+            $('#content').after(label);
+            $('#content').parent().addClass('has-error');
             return
           }
 
