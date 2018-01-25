@@ -105,13 +105,13 @@ block content
                 .form-group
                   input#title.form-control(type='text', placeholder='Ticket Title', name="title")
                 .form-group
-                  select#priority(name="priority")
+                  select#priority.form-control(name="priority")
                     option(value="Low" selected) Low
                     option(value="Mediun") Mediun
                     option(value="High") High
                   
                 .form-group
-                  textarea#content.md-textarea(type='text', style='height: 100px; width: 100%', name="content")
+                  textarea#content.md-textarea..form-control(type='text', style='height: 100px; width: 100%', name="content")
             .modal-footer
               button.btn.btn-default(type='button', data-dismiss='modal') Close
               button.btn.btn-primary(type='submit') Submit Ticket
