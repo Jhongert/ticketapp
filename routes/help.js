@@ -64,22 +64,6 @@ function sendTicket(options, callback){
         return callback(null, body.ticket);
     });
 }
-
-	// var ticketManager = new TicketManager(req.user.nickname, "https://sheltered-everglades-91474.herokuapp.com",{username: "ticket_access",password:"LumInar$1550"});
-	
-	
-	// var title = req.body.title;
-	// var category = req.body.category;
-	// var priority = req.body.priority;
-	// var company = req.user._json["http://app/user_metadata"].company;
-	// var email = req.body.email;
-	// var content = req.body.content;
-
-	 // ticketManager.issue(title, category, content, function(err,ticket){
-	 // 	console.log("error: ", err);
-	 // 	console.log("ticket: ", ticket);
-	 // 	console.log("finished");
-		//res.send(ticket);
 	
 
 	//send email upon pressing the 'Add Ticket' button
