@@ -134,6 +134,16 @@ block scripts
         $('#submit').on('click', function(e){
           e.preventDefault();
 
+
+          var priority = $('#priority').val().trim();
+          if(priority === ""){
+            var label = $('<label class="control-label">');
+            label.text('Please select a priority');
+            $('#priority').after(label);
+            $('#priority').parent().addClass('has-error');
+            return
+          }
+
           var title = $('#title').val().trim();
           if(title === ""){
             var label = $('<label class="control-label">');
@@ -142,6 +152,7 @@ block scripts
             $('#title').parent().addClass('has-error');
             return
           }
+          
         })
       });
     }
