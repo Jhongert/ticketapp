@@ -106,13 +106,15 @@ block content
                   label.control-label Title
                   input#title.form-control(type='text', placeholder='Ticket Title', name="title")
                 .form-group
+                  label.control-label Priority
                   select#priority.form-control(name="priority")
-                    option(value="" selected disabled) Select a priority
+                    option(value="" selected disabled) Choose...
                     option(value="Low") Low
                     option(value="Mediun") Mediun
                     option(value="High") High
                   
                 .form-group
+                  label.control-label Content
                   textarea#content.md-textarea.form-control(type='text', style='height: 100px; width: 100%', name="content")
             .modal-footer
               button.btn.btn-default(type='button', data-dismiss='modal') Close
