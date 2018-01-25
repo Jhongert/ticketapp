@@ -149,25 +149,26 @@ block scripts
           }
 
           //validate the priority
-          var priority = $('#priority').val();
-          if(!priority){
+          var priority = $('#priority');
+          if(!priority.val()){
             var label = $('<label class="control-label error">');
             label.text('Please select a priority');
-            $('#priority').after(label);
-            $('#priority').parent().addClass('has-error');
+            priority.after(label);
+            priority.parent().addClass('has-error');
             return
           }
 
            //validate the content
-          var content = $('#content').val().trim();
-          if(!content){
+          var content = $('#content');
+          if(!content.val().trim()){
             var label = $('<label class="control-label error">');
             label.text('Please enter the content');
-            $('#content').after(label);
-            $('#content').parent().addClass('has-error');
+            content.after(label);
+            content.parent().addClass('has-error');
             return
           }
 
+          $('form').submit();
         })
       });
     }
