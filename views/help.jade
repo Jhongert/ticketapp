@@ -135,7 +135,7 @@ block scripts
           e.preventDefault();
 
 
-          var priority = $('#priority').val().trim();
+          var priority = $('#priority').val();
           if(priority === ""){
             var label = $('<label class="control-label">');
             label.text('Please select a priority');
@@ -152,7 +152,7 @@ block scripts
             $('#title').parent().addClass('has-error');
             return
           }
-          
+
         })
       });
     }
