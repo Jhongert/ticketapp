@@ -91,34 +91,33 @@ block content
             i.fa.fa-chevron-down=" More Older Tickets"
 
     #myModalNorm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      form.comment(action="/api/tickets/new", method="POST")
-        .modal-dialog
-          .modal-content
-            .modal-header
-              button.close(type='button', data-dismiss='modal')
-                span(aria-hidden='true') &times;
-                span.sr-only Close
-              h4#myModalLabel.modal-title
-                  Create Ticket
-            .modal-body
-              form(role='form')
-                .form-group
-                  label.control-label Ticket title
-                  input#title.form-control(type='text', name="title")
-                .form-group
-                  label.control-label Priority
-                  select#priority.form-control(name="priority")
-                    option(value="" selected disabled) Choose...
-                    option(value="Low") Low
-                    option(value="Mediun") Mediun
-                    option(value="High") High
-                  
-                .form-group
-                  label.control-label Content
-                  textarea#content.md-textarea.form-control(type='text', style='height: 100px; width: 100%', name="content")
-            .modal-footer
-              button.btn.btn-default(type='button', data-dismiss='modal') Close
-              button#submit.btn.btn-primary(type='buttom') Submit Ticket
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal')
+              span(aria-hidden='true') &times;
+              span.sr-only Close
+            h4#myModalLabel.modal-title
+                Create Ticket
+          .modal-body
+            form.comment(action="/api/tickets/new", method="POST")
+              .form-group
+                label.control-label Ticket title
+                input#title.form-control(type='text', name="title")
+              .form-group
+                label.control-label Priority
+                select#priority.form-control(name="priority")
+                  option(value="" selected disabled) Choose...
+                  option(value="Low") Low
+                  option(value="Mediun") Mediun
+                  option(value="High") High
+                
+              .form-group
+                label.control-label Content
+                textarea#content.md-textarea.form-control(type='text', style='height: 100px; width: 100%', name="content")
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button#submit.btn.btn-primary(type='buttom') Submit Ticket
               
 block scripts
   script(src='ticketman/js/endless_scroll/jquery.scroll-on-mongoose.js', type='text/javascript')
