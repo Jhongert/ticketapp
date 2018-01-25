@@ -134,11 +134,13 @@ block scripts
         $('#submit').on('click', function(e){
           e.preventDefault();
 
+          //remove all error labels and has-error class
+          $('.error').remove();
+          $('.has-error').removeClass('has-error');
 
           var priority = $('#priority').val();
-          alert(priority);
-          if(priority === ""){
-            var label = $('<label class="control-label">');
+          if(!priority){
+            var label = $('<label class="control-label error">');
             label.text('Please select a priority');
             $('#priority').after(label);
             $('#priority').parent().addClass('has-error');
@@ -147,7 +149,7 @@ block scripts
 
           var title = $('#title').val().trim();
           if(title === ""){
-            var label = $('<label class="control-label">');
+            var label = $('<label class="control-label error">');
             label.text('Please enter a title');
             $('#title').after(label);
             $('#title').parent().addClass('has-error');
