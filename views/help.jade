@@ -138,7 +138,8 @@ block scripts
           if(title === ""){
             var label = $('<label class="has-error">');
             label.text('Please enter a title');
-            $('#title').addClass('has-error').after(label);
+            $('#title').after(label);
+            $('#title').parent()..addClass('has-error');
             return
           }
         })
