@@ -9,9 +9,8 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
-const config = require('./config/config');
 
-const view_helper = require("./ticketman/lib/utils/view_helper");
+const view_helper = require("./utils/view_helper");
 
 dotenv.load();
 
@@ -94,9 +93,6 @@ app.use(function(req, res, next) {
 });
 
 var db = require('./config/connection');
-
-
-//require("./models/worker");
 
 app.use('/', routes);
 app.use('/api', api);
