@@ -49,13 +49,13 @@ MongooseEndlessScroll = (function() {
         var bottomBoundary;
         var win = $(window);
 
-        //bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
+        bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
         console.log($(document).height());
         console.log(win.height());
         console.log(win.scrollTop());
         //if($(document).height() - win.height() == win.scrollTop()){
-        if($(window).scrollTop() + $(window).height() >= $(document).height()){
-        //if ($(window).scrollTop() >= bottomBoundary) {
+        //if($(window).scrollTop() + $(window).height() >= $(document).height()){
+        if ($(window).scrollTop() >= bottomBoundary) {
           _this.fetchDown();
           //$(window).scrollTop(bottomBoundary - 20);
         }
