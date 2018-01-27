@@ -10,7 +10,7 @@ MongooseEndlessScroll = (function() {
 
   DEFAULTS = {
     itemsToKeep: null,
-    inflowPixels: -90,
+    inflowPixels: -300,
     intervalFrequency: 250,
     autoStart: true,
     htmlLoading: "Loading...",
