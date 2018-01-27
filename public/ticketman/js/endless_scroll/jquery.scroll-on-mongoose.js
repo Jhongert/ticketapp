@@ -10,7 +10,7 @@ MongooseEndlessScroll = (function() {
 
   DEFAULTS = {
     itemsToKeep: null,
-    inflowPixels: 30,
+    inflowPixels: 90,
     intervalFrequency: 250,
     autoStart: true,
     htmlLoading: "Loading...",
@@ -21,7 +21,7 @@ MongooseEndlessScroll = (function() {
     itemElementName: "a",
     paginationKey: "_id",
     formatItem: function(item) {
-      return "<a href=\"/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">\n    <span class=\"label label-success\">" + item.status + "</span>\n  </div>\n  <div class=\"col-md-2\"><small><code>" + item._id + "</code></small></div>\n  <div class=\"col-md-5\">" + item.title + "</div>\n  <div class=\"col-md-1\">" + item.category + "</div>\n  <div class=\"col-md-1 text-right\"><small title=\"2014-03-07T09:11:34.813Z\" class=\"muted timeago\">" + item.created_at + "</small></div>\n  <div class=\"col-md-1 text-right\"><small title=\"2014-03-07T09:11:52.074Z\" class=\"muted timeago\">" + item.updated_at + "</small></div>\n  <div class=\"col-md-1\">" + item.attempts + "</div></div></a>";
+      return "<a href=\"/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">\n    <span class=\"label label-success\">" + item.status + "</span>\n  </div>\n  <div class=\"col-md-2\"><small><code>" + item._id + "</code></small></div>\n  <div class=\"col-md-5\">" + item.title + "</div>\n  <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-1 text-right\"><small title=\"2014-03-07T09:11:34.813Z\" class=\"muted timeago\">" + item.created_at + "</small></div>\n  <div class=\"col-md-1 text-right\"><small title=\"2014-03-07T09:11:52.074Z\" class=\"muted timeago\">" + item.updated_at + "</small></div>\n  <div class=\"col-md-1\">" + item.attempts + "</div></div></a>";
     }
   };
 
