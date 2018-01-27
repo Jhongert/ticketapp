@@ -329,7 +329,8 @@
       return next(new Error("please say something"));
     }
     req.body.kind = "warning";
-    req.body.name = "admin";
+    //req.body.name = "admin";
+    req.body.name = req.user.nickname;
     Ticket.addComment(id, req.body, function(err, ticket) {
       if (err != null) {
         return next(err);

@@ -60,7 +60,7 @@
   });
 
   TicketSchema.plugin(paginator, {
-    limit: 8,
+    limit: 10,
     defaultKey: '_id',
     direction: 'desc'
   });
