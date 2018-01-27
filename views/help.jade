@@ -58,12 +58,11 @@ block content
         .panel-heading
           .row
             .col-md-1 status
-            .col-md-3 id
             .col-md-4 title
+            .col-md-2 company
             .col-md-1 priority
-            .col-md-1.text-right created
-            .col-md-1.text-right updated
-            .col-md-1 Attempts
+            .col-md-2.text-right created
+            .col-md-2.text-right updated
 
         //.list-group
           //a#loading-prev.list-group-item.text-center
@@ -76,7 +75,8 @@ block content
                 .col-md-1
                   !=helper.genLabelByStatus(ticket.status)
                 .col-md-4=ticket.title
-                .col-md-2=ticket.company
+                .col-md-2
+                  !=helper.capitalize(ticket.company)
                 .col-md-1=ticket.priority
                 .col-md-2.text-right
                   !=helper.genDateTag(ticket.created_at)
