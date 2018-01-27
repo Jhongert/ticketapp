@@ -49,8 +49,6 @@ MongooseEndlessScroll = (function() {
         var bottomBoundary;
         bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
 
-        console.log(bottomBoundary);
-        
         if ($(window).scrollTop() >= bottomBoundary) {
           _this.fetchDown();
           $(window).scrollTop(bottomBoundary - 20);
@@ -88,6 +86,10 @@ MongooseEndlessScroll = (function() {
     if (record != null) {
       data[DIRECTION_DOWN] = record[this.options.paginationKey];
     }
+    console.log(data);
+    console.log(id);
+    console.log(record);
+    
     this.fetch(data);
   };
 
