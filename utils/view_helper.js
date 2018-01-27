@@ -12,6 +12,9 @@
   };
 
   helpers = {
+    capitalize: function(text){
+      return text.charAt(0).toUpperCase() + text.substr(1);
+    }
     generateDownloadPathByJson: function(jsonId) {
       return "/assets/json/" + jsonId + ".json";
     },

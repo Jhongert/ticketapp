@@ -23,7 +23,8 @@ block content
       .col-md-3.input-lg=ticket.owner_id
 
       .col-md-1.input-lg.text-muted  Company:
-      .col-md-3.input-lg=ticket.company
+      .col-md-3.input-lg 
+        !=helper.capitalize(ticket.company)
 
       .col-md-1.input-lg.text-muted  Status:
       .col-md-3.input-lg
@@ -35,9 +36,6 @@ block content
       .col-md-1.input-lg.text-muted  Created:
       .col-md-3.input-lg
         !=helper.genDateTag(ticket.created_at)
-      
-      .col-md-1.input-lg.text-muted  Attempts:
-      .col-md-3.input-lg=ticket.attempts
 
       .col-md-1.input-lg.text-muted  Priority:
       .col-md-11.input-lg=ticket.priority
