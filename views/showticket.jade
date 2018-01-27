@@ -20,7 +20,7 @@ block content
       .col-md-3.input-lg=ticket.owner_id
 
       .col-md-1.input-lg.text-muted  Company:
-      .col-md-3.input-lg=ticket.company
+      .col-md-3.input-lg=ticket.company.charAt(0).toUpperCase() + ticket.company.substr(1);
 
       .col-md-1.input-lg.text-muted  Status:
       .col-md-3.input-lg
