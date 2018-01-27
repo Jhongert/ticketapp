@@ -35,6 +35,10 @@ if(window.jQuery){
 	    return "<small title='" + isoStr + "' class='muted timeago'>" + dateStr + "</small>";
 	};
 
+	var capitalize = function(text){
+      return text.charAt(0).toUpperCase() + text.substr(1);
+    }
+
 	var genLabelByStatus = function(status) {
 	    return "<span class='label label-" + (TICKET_STATUS_TO_INFO_TYPE[status] || 'default') + "'>" + status + "</span>";
 	}
@@ -52,7 +56,7 @@ if(window.jQuery){
 	    	if($(".timeago").length > 0) $(".timeago").prettyDate({"interval":false});
 	  	},
 	  	formatItem: function(item) {
-	    	return "<a href=\"api/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">" + (genLabelByStatus(item.status)) + " </div>\n <div class=\"col-md-4\">" + item.title + "</div>\n  <div class=\"col-md-2\">" + item.company + "</div>\n <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.created_at)) + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.updated_at)) + "</div>\n </div></a>";
+	    	return "<a href=\"api/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">" + (genLabelByStatus(item.status)) + " </div>\n <div class=\"col-md-4\">" + item.title + "</div>\n  <div class=\"col-md-2\">" + capitalize(item.company) + "</div>\n <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.created_at)) + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.updated_at)) + "</div>\n </div></a>";
 	  	}
 
 	});
