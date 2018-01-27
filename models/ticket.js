@@ -178,7 +178,7 @@
           return callback(new Error("missing ticket for query: " + (JSON.stringify(query))));
         }
         comment = {
-          name: query.worker || query.whoami || query.name || "system",
+          name: query.user || query.whoami || query.name || "system",
           kind: "primary",
           content: "change ticket status to " + status
         };

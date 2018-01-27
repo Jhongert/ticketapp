@@ -230,6 +230,7 @@
       return next();
     }
     req.body.id = id;
+    req.body.user = req.user.nickname;
     Ticket.changeStatus(req.body, STATUS.COMPLETE, function(err, ticket) {
       if (err != null) {
         return next(err);
@@ -304,7 +305,8 @@
         return next(new Error("only pending ticket could be abandoned"));
       }
       Ticket.changeStatus({
-        id: ticket.id
+        id: ticket.id,
+        user: req.user.nickname;
       }, STATUS.ABANDON, function(err, ticket) {
         if (err != null) {
           return next(err);
