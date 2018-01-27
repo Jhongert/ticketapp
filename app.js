@@ -17,8 +17,6 @@ dotenv.load();
 const routes = require('./routes/index');
 const api = require('./routes/api');
 
-//const routes = require('./routes/routes');
-
 // This will configure Passport to use Auth0
 const strategy = new Auth0Strategy(
   {

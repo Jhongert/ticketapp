@@ -10,7 +10,7 @@ MongooseEndlessScroll = (function() {
 
   DEFAULTS = {
     itemsToKeep: null,
-    inflowPixels: 90,
+    inflowPixels: 30,
     intervalFrequency: 250,
     autoStart: true,
     htmlLoading: "Loading...",
@@ -50,7 +50,7 @@ MongooseEndlessScroll = (function() {
         bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
         if ($(window).scrollTop() >= bottomBoundary) {
           _this.fetchDown();
-          $(window).scrollTop(bottomBoundary - 20);
+          //$(window).scrollTop(bottomBoundary - 20);
         }
         return setTimeout(scrollListener, _this.options.intervalFrequency);
       });
