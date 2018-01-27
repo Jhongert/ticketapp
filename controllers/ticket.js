@@ -306,7 +306,7 @@
       }
       Ticket.changeStatus({
         id: ticket.id,
-        user: req.user.nickname;
+        user: req.user.nickname
       }, STATUS.ABANDON, function(err, ticket) {
         if (err != null) {
           return next(err);
