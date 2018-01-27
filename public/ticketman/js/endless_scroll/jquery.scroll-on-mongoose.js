@@ -50,7 +50,7 @@ MongooseEndlessScroll = (function() {
         bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
         if ($(window).scrollTop() >= bottomBoundary) {
           _this.fetchDown();
-          //$(window).scrollTop(bottomBoundary - 20);
+          $(window).scrollTop(bottomBoundary - 20);
         }
         return setTimeout(scrollListener, _this.options.intervalFrequency);
       });

@@ -2,22 +2,22 @@ var yourTickId = "Thank you for your submission. A Luminar representative will c
 
 
 
-$("#addTicket").on("click", function(event){
-	event.preventDefault();
+// $("#addTicket").on("click", function(event){
+// 	event.preventDefault();
 	
-	var data = {
-		title : $("#myTitle").val().trim(),
-		priority : $("#myPriority").val().trim(),
-		content : $(".md-textarea").val().trim()
-	}
+// 	var data = {
+// 		title : $("#myTitle").val().trim(),
+// 		priority : $("#myPriority").val().trim(),
+// 		content : $(".md-textarea").val().trim()
+// 	}
 	
-	$.post("/api/tickets/new",data , function(ticket, err){
-		console.log(ticket);
+// 	$.post("/api/tickets/new",data , function(ticket, err){
+// 		console.log(ticket);
 
-		//$("#ticketIdHolder").append("<h3>"+"Your Ticket ID is: "+ ticket.id+ "</h3>").prepend("<h3>"+yourTickId+"</h3>");
+// 		//$("#ticketIdHolder").append("<h3>"+"Your Ticket ID is: "+ ticket.id+ "</h3>").prepend("<h3>"+yourTickId+"</h3>");
 
-	})
-});
+// 	})
+// });
 
 if(window.jQuery){
 
