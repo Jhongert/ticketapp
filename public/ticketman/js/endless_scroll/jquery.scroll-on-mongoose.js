@@ -51,7 +51,7 @@ MongooseEndlessScroll = (function() {
 
         if ($(window).scrollTop() >= bottomBoundary) {
           _this.fetchDown();
-          $(window).scrollTop(bottomBoundary - 20);
+          //$(window).scrollTop(bottomBoundary - 20);
         }
         return setTimeout(scrollListener, _this.options.intervalFrequency);
       });
@@ -86,10 +86,7 @@ MongooseEndlessScroll = (function() {
     if (record != null) {
       data[DIRECTION_DOWN] = record[this.options.paginationKey];
     }
-    console.log(data);
-    console.log(id);
-    console.log(record);
-    
+
     this.fetch(data);
   };
 
