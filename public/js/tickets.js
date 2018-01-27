@@ -1,4 +1,4 @@
-var yourTickId = "Thank you for your submission. A Luminar representative will contact you shortly." 
+//var yourTickId = "Thank you for your submission. A Luminar representative will contact you shortly." 
 
 
 
