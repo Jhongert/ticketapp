@@ -47,9 +47,9 @@ MongooseEndlessScroll = (function() {
     scrollListener = function() {
       return $(window).one("scroll", function() {
         var bottomBoundary;
-        bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
-
-        if ($(window).scrollTop() >= bottomBoundary) {
+        //bottomBoundary = $(document).height() - $(window).height() - _this.options.inflowPixels / 2;
+        if($(window).scrollTop() + $(window).height() >= $(document).height()){
+        //if ($(window).scrollTop() >= bottomBoundary) {
           _this.fetchDown();
           //$(window).scrollTop(bottomBoundary - 20);
         }
