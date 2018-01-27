@@ -112,9 +112,9 @@
       if (err != null) {
         return next(err);
       }
-      var company = ticket.company;
+      //var company = ticket.company;
 
-      ticket.company = company.charAt(0).toUpperCase() + company.substr(1);
+      //ticket.company = company.charAt(0).toUpperCase() + company.substr(1);
       res.render('showticket', {
         title: 'All Tickets',
         ticket: ticket

@@ -75,16 +75,13 @@ block content
               .row
                 .col-md-1
                   !=helper.genLabelByStatus(ticket.status)
-                .col-md-3
-                  small
-                    code=ticket.id
                 .col-md-4=ticket.title
+                .col-md-2=ticket.company
                 .col-md-1=ticket.priority
-                .col-md-1.text-right
+                .col-md-2.text-right
                   !=helper.genDateTag(ticket.created_at)
-                .col-md-1.text-right
+                .col-md-2.text-right
                   !=helper.genDateTag(ticket.updated_at)
-                .col-md-1=ticket.attempts
             
         .list-group
           a#loading-next.list-group-item.text-center

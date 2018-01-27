@@ -16,11 +16,14 @@ block content
   .wrapper
     .row
 
+      .col-md-1.input-lg.text-muted  Id:
+      .col-md-3.input-lg=ticket.id
+
       .col-md-1.input-lg.text-muted  Owner:
       .col-md-3.input-lg=ticket.owner_id
 
       .col-md-1.input-lg.text-muted  Company:
-      .col-md-3.input-lg=ticket.company
+      .col-md-3.input-lg=#{ticket.companycharAt(0).toUpperCase() + company.substr(1)}
 
       .col-md-1.input-lg.text-muted  Status:
       .col-md-3.input-lg
