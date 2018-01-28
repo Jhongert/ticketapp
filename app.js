@@ -15,7 +15,7 @@ const view_helper = require("./utils/view_helper");
 dotenv.load();
 
 const routes = require('./routes/index');
-const api = require('./routes/api');
+const tickets = require('./routes/tickets');
 
 // This will configure Passport to use Auth0
 const strategy = new Auth0Strategy(
@@ -93,7 +93,7 @@ app.use(function(req, res, next) {
 var db = require('./config/connection');
 
 app.use('/', routes);
-app.use('/api', api);
+app.use('/tickets', tickets);
 
 
 // catch 404 and forward to error handler

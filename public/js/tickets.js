@@ -24,7 +24,7 @@ if(window.jQuery){
 
 	var mscroller = $(window).mongooseEndlessScroll({
 	    itemsToKeep: -1,
-	    serviceUrl : "/api/tickets/list.json",
+	    serviceUrl : "/tickets/list.json",
 	    container : $("#list"),
 	    intervalFrequency: 200,
 	  	elControlDown : $("#loading-next"),
@@ -35,7 +35,7 @@ if(window.jQuery){
 	    	if($(".timeago").length > 0) $(".timeago").prettyDate({"interval":false});
 	  	},
 	  	formatItem: function(item) {
-	    	return "<a href=\"api/tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">" + (genLabelByStatus(item.status)) + " </div>\n <div class=\"col-md-4\">" + item.title + "</div>\n  <div class=\"col-md-2\">" + capitalize(item.company) + "</div>\n <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.created_at)) + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.updated_at)) + "</div>\n </div></a>";
+	    	return "<a href=\"tickets/" + item._id + "\" class=\"list-group-item\" id=\"" + item._id + "\">\n  <div class=\"row\"><div class=\"col-md-1\">" + (genLabelByStatus(item.status)) + " </div>\n <div class=\"col-md-4\">" + item.title + "</div>\n  <div class=\"col-md-2\">" + capitalize(item.company) + "</div>\n <div class=\"col-md-1\">" + item.priority + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.created_at)) + "</div>\n  <div class=\"col-md-2 text-right\">" + (genDateTag(item.updated_at)) + "</div>\n </div></a>";
 	  	}
 
 	});
@@ -43,7 +43,7 @@ if(window.jQuery){
 	// refresh ticket counts
 	$(document).ready(function() {
 	  	setInterval(function(){
-	    	$.get("/api/tickets/count.json", function(data){
+	    	$.get("/tickets/count.json", function(data){
 	      		for(var key in data){
 	        		$("#count-"+key).text(data[key]);
 	      		}

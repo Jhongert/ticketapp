@@ -340,7 +340,7 @@
       if (ticket == null) {
         return next();
       }
-      return res.redirect("/api/tickets/" + id);
+      return res.redirect("/tickets/" + id);
     });
   };
 
