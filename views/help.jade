@@ -70,7 +70,7 @@ block content
 
         #list.list-group
           each ticket in tickets
-            a.list-group-item(href="api/tickets/#{ticket.id}")
+            a.list-group-item(href="tickets/#{ticket.id}")
               .row
                 .col-md-1
                   !=helper.genLabelByStatus(ticket.status)
@@ -99,7 +99,7 @@ block content
             h4#myModalLabel.modal-title
                 Create Ticket
           .modal-body
-            form.comment(action="/api/tickets/new", method="POST")
+            form.comment(action="/tickets/new", method="POST")
               .form-group
                 label.control-label Ticket title
                 input#title.form-control(type='text', name="title")
