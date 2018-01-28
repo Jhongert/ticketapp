@@ -129,7 +129,6 @@
     req.body.token = crypto.createHash('md5').update(title).digest('hex').toLowerCase();
     ticket = new Ticket(req.body);
     ticket.save((function(_this) {
-      if(!err){
         //send email upon pressing the 'Add Ticket' button
         let transporter = nodemailer.createTransport({
           service: 'gmail',
@@ -161,8 +160,7 @@
           console.log(info);
         });
 
-        res.redirect('/help');
-      }  
+        res.redirect('/help'); 
     })(this));
   };
 
