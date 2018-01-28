@@ -145,8 +145,7 @@
         //Body of email message
         let HelperOptions = {
           from: ticket.nickname + ' &lt;' + ticket.email + '&gt;',
-          to: 'jhongertf@gmail.com',
-          //to: 'customersupport@luminartech.com',
+          to: 'customersupport@luminartech.com',
           subject:'Ticket Submission',
           text:"From:" +ticket.owner_id +"\n"+ "\n"+ "Email: " + ticket.email+"\n" + "\n"+ "Priority: " +ticket.priority +"\n"+ "\n"+ "TicketID: " + ticket.id +"\n" +"\n" + "Ticket Content: " +ticket.content 
         };
