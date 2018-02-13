@@ -39,7 +39,7 @@ router.get('/callback',
     failureRedirect: '/failure'
   }),
   function(req, res) {
-    res.redirect(req.session.returnTo || '/user');
+    res.redirect(req.session.returnTo || '/tickets');
   }
 );
 
