@@ -21,7 +21,7 @@
 
   exports.index = function(req, res, next) {
     debuglog("index");
-    res.render('tickets/tickets/index', {
+    res.render('tickets', {
       title: 'All Tickets',
       tickets: []
     });

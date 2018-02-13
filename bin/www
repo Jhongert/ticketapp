@@ -20,11 +20,6 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-var options = { 
-  ca: fs.readFileSync( './ssl/__luminartech_com.ca-bundle' ),
-  key: fs.readFileSync( './ssl/luminartech_com.key' ),  
-  cert: fs.readFileSync( './ssl/certificate.crt' ),
-};
 
 var server = http.createServer(app);
 
