@@ -40,14 +40,14 @@ if(window.jQuery){
 
 	});
 
-	// refresh ticket counts
-	// $(document).ready(function() {
-	// 	$.get("/tickets/count.json", function(data){
-	// 		for(var key in data){
-	// 			$("#count-"+key).text(data[key]);
-	// 		}
-	// 	})
-	// });
+	//refresh ticket counts
+	$(document).ready(function() {
+		$.get("/tickets/count.json", function(data){
+			for(var key in data){
+				$("#count-"+key).text(data[key]);
+			}
+		})
+	});
 
 	// listen to tab switch
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
