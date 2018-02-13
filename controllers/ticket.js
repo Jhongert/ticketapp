@@ -53,53 +53,53 @@
     });
   };
 
-  exports.count = function(req, res, next) {
-    var result, query, company;
-    result = {};
-    query = {};
+  // exports.count = function(req, res, next) {
+  //   var result, query, company;
+  //   result = {};
+  //   query = {};
 
-    company = req.user._json["http://app/user_metadata"].company;
+  //   company = req.user._json["http://app/user_metadata"].company;
 
-    if(company !== "luminar"){
-      query.company = company;
-    }
+  //   if(company !== "luminar"){
+  //     query.company = company;
+  //   }
 
-      Ticket.count(query, function(err, count) {
-      if (err != null) {
-        next(err);
-      }
-      result.all = count;
-      query.status = STATUS.PENDING;
-      Ticket.count(query, function(err, count) {
-        if (err != null) {
-          next(err);
-        }
-        result[STATUS.PENDING] = count;
-        query.status = STATUS.PROCESSING;
-        Ticket.count(query, function(err, count) {
-          if (err != null) {
-            next(err);
-          }
-          result[STATUS.PROCESSING] = count;
-          query.status = STATUS.COMPLETE;
-          Ticket.count(query, function(err, count) {
-            if (err != null) {
-              next(err);
-            }
-            result[STATUS.COMPLETE] = count;
-            query.status = STATUS.ABANDON;
-            Ticket.count(query, function(err, count) {
-              if (err != null) {
-                next(err);
-              }
-              result[STATUS.ABANDON] = count;
-              res.json(result);
-            });
-          });
-        });
-      });
-    });
-  };
+  //     Ticket.count(query, function(err, count) {
+  //     if (err != null) {
+  //       next(err);
+  //     }
+  //     result.all = count;
+  //     query.status = STATUS.PENDING;
+  //     Ticket.count(query, function(err, count) {
+  //       if (err != null) {
+  //         next(err);
+  //       }
+  //       result[STATUS.PENDING] = count;
+  //       query.status = STATUS.PROCESSING;
+  //       Ticket.count(query, function(err, count) {
+  //         if (err != null) {
+  //           next(err);
+  //         }
+  //         result[STATUS.PROCESSING] = count;
+  //         query.status = STATUS.COMPLETE;
+  //         Ticket.count(query, function(err, count) {
+  //           if (err != null) {
+  //             next(err);
+  //           }
+  //           result[STATUS.COMPLETE] = count;
+  //           query.status = STATUS.ABANDON;
+  //           Ticket.count(query, function(err, count) {
+  //             if (err != null) {
+  //               next(err);
+  //             }
+  //             result[STATUS.ABANDON] = count;
+  //             res.json(result);
+  //           });
+  //         });
+  //       });
+  //     });
+  //   });
+  // };
 
   exports.show = function(req, res, next) {
     var id;
