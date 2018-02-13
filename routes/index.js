@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-//const routes = require('./routes');
+const tickets = require('./routes/tickets');
 
 const env = {
   AUTH0_CLIENT_ID: 'YgOyoROHdEqHodKl1apjFd_xRmXd6ihn',
@@ -53,6 +53,6 @@ router.get('/failure', function(req, res) {
   });
 });
 
-//router.use('/tickets', tickets);
+router.use('/tickets', tickets);
 
 module.exports = router;
