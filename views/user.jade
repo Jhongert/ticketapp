@@ -1,0 +1,50 @@
+extends ./layouts/default
+
+block content
+
+       
+    .wrapper
+      #welcomeSign
+        h1#dash
+          center Welcome #{user.nickname}
+
+      .wrapper.center
+        div
+          center
+            .iconContainer
+              span.icon
+                a(href='/sdk')
+                  img.iconSize(src='/images/sdk.jpg')
+                               
+              span.myText SDK
+                           
+            .iconContainer
+              span.icon
+                a(href='/sampledata')
+                  img.iconSize(src='/images/sampledata.jpg')
+                               
+              span.myText Sample Data
+                           
+            .iconContainer
+              span.icon
+                a(href='/pig')
+                  img.iconSize(src='/images/book.jpg')
+                               
+              span.myText Product Info Guide
+
+                     
+        div
+          center
+            .iconContainer
+              span.icon
+                a(href='/faqs')
+                  img.iconSize(src='/images/faq.png')
+                               
+              span.myText FAQs
+                           
+            .iconContainer
+              span.icon
+                a(href='/help')
+                  img.iconSize(src='/images/help.jpg')
+                               
+              span.myText Help Portal

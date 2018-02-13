@@ -10,4 +10,9 @@ router.get('/help', ensureLoggedIn, function(req, res, next){
     });
 });
 
+router.get('/user', ensureLoggedIn, function(req, res, next){
+  res.render('user', {
+    user: req.user
+  });
+});
 module.exports = router;
