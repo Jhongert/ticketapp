@@ -35,7 +35,7 @@
 
     company = req.user._json["http://app/user_metadata"].company;
 
-    if(company !== "luminar"){
+    if(company !== "abc"){
       query.where({company: company});
     }
 
@@ -60,7 +60,7 @@
 
     company = req.user._json["http://app/user_metadata"].company;
 
-    if(company !== "luminar"){
+    if(company !== "abc"){
       query.company = company;
     }
 
@@ -150,8 +150,8 @@
           secure: false,
           port: 25,
           auth: {
-              user: 'maria.saavedra@luminartech.com',
-              pass: 'Hayden25!'
+              user: 'jhongertf@gmail.com',
+              pass: 'password!'
           },
           tls: {
             rejectUnauthorized: false
@@ -160,7 +160,7 @@
         //Body of email message
         let HelperOptions = {
           from: ticket.nickname + ' &lt;' + ticket.email + '&gt;',
-          to: 'customersupport@luminartech.com',
+          to: 'jhongertf@gmail.com',
           subject:'Ticket Submission',
           text:"From:" +ticket.owner_id +"\n"+ "\n"+ "Email: " + ticket.email+"\n" + "\n"+ "Priority: " +ticket.priority +"\n"+ "\n"+ "TicketID: " + ticket.id +"\n" +"\n" + "Ticket Content: " +ticket.content 
         };
