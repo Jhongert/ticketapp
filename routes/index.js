@@ -11,7 +11,7 @@ const env = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login');
+  res.redirect("/tickets");
 });
 
 router.get('/login', passport.authenticate('auth0', {
