@@ -42,13 +42,11 @@ if(window.jQuery){
 
 	// refresh ticket counts
 	$(document).ready(function() {
-	  	setInterval(function(){
-	    	$.get("/tickets/count.json", function(data){
-	      		for(var key in data){
-	        		$("#count-"+key).text(data[key]);
-	      		}
-	    	})
-	  	}, 3000)
+		$.get("/tickets/count.json", function(data){
+			for(var key in data){
+				$("#count-"+key).text(data[key]);
+			}
+		})
 	});
 
 	// listen to tab switch
