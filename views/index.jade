@@ -1,6 +1,4 @@
-
-
-doctype html(lang='en')
+doctype html
 head
     title Ticket App
          
@@ -9,8 +7,6 @@ head
     meta(name='viewport', content='width=device-width, initial-scale=1')
         
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-
-    link(rel="icon", type="image/png", href="/images/barsfavicon.png")
     
     script(src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js")   
          
@@ -19,14 +15,6 @@ head
   body
     main.container
       .row
-        br
-                  
-        #signinDiv.col
-          center
-            h2 Log in 
-                         
-            br
-          
-          center
-            a.btn.btn-default.btn-block.customBtn(href='/tickets') Log In
+        .col-sm-12
+          a.btn.btn-default.btn-block.customBtn(href='/tickets') Log In
   &#x9;
