@@ -7,7 +7,7 @@ var controller;
 controller = require("../controllers/ticket");
 
 router.get('/', ensureLoggedIn, controller.index);
-router.get('/count.json', ensureLoggedIn, controller.count);
+//router.get('/count.json', ensureLoggedIn, controller.count);
 router.get('/list.json', ensureLoggedIn, controller.list);
 router.post('/new', ensureLoggedIn, controller.create);
 router.get('/:id', ensureLoggedIn, controller.show);
