@@ -2,8 +2,6 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-//const tickets = require('./routes/tickets');
-
 const env = {
   AUTH0_CLIENT_ID: 'YgOyoROHdEqHodKl1apjFd_xRmXd6ihn',
   AUTH0_DOMAIN: 'jhongertf.auth0.com',
@@ -24,7 +22,7 @@ router.get('/login', passport.authenticate('auth0', {
   audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
   scope: 'openid email profile user_metadata'}),
   function(req, res) {
-    res.redirect("/");
+    res.redirect("/tickets");
 });
 
 router.get('/logout', function(req, res) {
@@ -53,6 +51,5 @@ router.get('/failure', function(req, res) {
   });
 });
 
-//router.use('/tickets', tickets);
 
 module.exports = router;
