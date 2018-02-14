@@ -1,20 +1,44 @@
-doctype html
+
+
+doctype html(lang='en')
 head
-    title Ticket App
+    title Luminar
          
     meta(charset='utf-8')
          
     meta(name='viewport', content='width=device-width, initial-scale=1')
         
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+
+    link(rel="icon", type="image/png", href="/images/barsfavicon.png")
     
     script(src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js")   
          
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     
   body
+    header
+      nav.navbar.navbar-default.navbar-inverse
+        .container-fluid
+          .navbar-header
+            li
+              img#logoImg(src='/images/barsfavicon.png')
+        
     main.container
       .row
-        .col-sm-12
-          a.btn.btn-default.btn-block.customBtn(href='/tickets') Log In
+        br
+                 
+        #signInMsg.col
+          img.center(src='/images/Luminar.png')
+                  
+        #signinDiv.col
+          center
+            h2 Log in 
+           
+               
+                            
+            br
+          
+          center
+            a.btn.btn-default.btn-block.customBtn(href='/user') Log In
   &#x9;
