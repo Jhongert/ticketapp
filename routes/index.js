@@ -28,7 +28,7 @@ router.get('/login', passport.authenticate('auth0', {
 router.get('/logout', function(req, res) {
     req.session.destroy();
     req.logout();
-    res.render('index');
+    res.redirect('/');
   
 });
 
