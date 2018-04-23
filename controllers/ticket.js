@@ -130,19 +130,19 @@
     ticket = new Ticket(req.body);
     ticket.save((function(_this) {
       
-        return function(err) {
-          if (err != null) {
-            return res.json({
-              success: false,
-              error: err.toString()
-            });
-          } else {
-            return res.json({
-              success: true,
-              ticket: ticket
-            });
-          }
-        };
+        // return function(err) {
+        //   if (err != null) {
+        //     return res.json({
+        //       success: false,
+        //       error: err.toString()
+        //     });
+        //   } else {
+        //     return res.json({
+        //       success: true,
+        //       ticket: ticket
+        //     });
+        //   }
+        // };
 
         //send email upon pressing the 'Add Ticket' button
         let transporter = nodemailer.createTransport({
