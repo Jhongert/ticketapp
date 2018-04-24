@@ -174,7 +174,7 @@
           console.log(info);
         });
 
-        res.redirect('/help'); 
+        res.redirect('/tickets'); 
     })(this));
   };
 

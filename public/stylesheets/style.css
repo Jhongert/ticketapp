@@ -1,4 +1,4 @@
-
+/* 
 
 body{
     
@@ -18,7 +18,7 @@ body{
 }
 
 #logoImg {
-    /*width: 111px;*/
+  
     position: relative;
     top: -2px;
     padding-bottom: -25px;
@@ -67,8 +67,6 @@ h3 {
 }
 
 .iconContainer {
-  /*border: 1px solid #ccc;
-  border-radius: 6px;*/
   display: inline-block;
   margin: 30px;
   padding: 10px;
@@ -209,19 +207,19 @@ h3 {
 
 #locationTxt {
   font-family: logo;
-}
+} */
 
 
-.txtDiv {
+/* .txtDiv {
   transform: skewX(20deg);
-}
+} */
 
-.current {
+/* .current {
   background: -webkit-linear-gradient(top, #b57c4c , #fde399);
   background-color: #ECECEC;
-}
+} */
 
-.empty {
+/* .empty {
   border: solid #000 1px; 
   border-left: 0;
   height: 30px; 
@@ -229,17 +227,17 @@ h3 {
   float: left; 
   margin: 0px;
   transform: skewX(-20deg); 
-}
+} */
 
 
-footer {
+/* footer {
   background-color: #000;
-}
+} */
 
 /* for ticketman */
-pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+/* pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
 .string { color: green; }
 .number { color: darkorange; }
 .boolean { color: blue; }
 .null { color: magenta; }
-.key { color: red; }
+.key { color: red; } */
