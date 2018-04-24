@@ -28,8 +28,8 @@ if(window.jQuery){
 	    container : $("#list"),
 	    intervalFrequency: 200,
 	  	elControlDown : $("#loading-next"),
-	  	htmlEnableScrollUp : "<i class='fa fa-chevron-up'></i> More Newerer Tickets",
-	  	htmlEnableScrollDown :  "<i class='fa fa-chevron-down'></i> More Older Tickets",
+	  	htmlEnableScrollUp : "<i class='fa fa-chevron-up'></i> Newerer Tickets",
+	  	htmlEnableScrollDown :  "<i class='fa fa-chevron-down'></i> Older Tickets",
 	  	htmlLoading : "<i class='fa fa-spinner fa-spin'></i> Loading...",
 	  	onChange : function(){
 	    	if($(".timeago").length > 0) $(".timeago").prettyDate({"interval":false});
