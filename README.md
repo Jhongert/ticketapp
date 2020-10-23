@@ -21,7 +21,5 @@
 ### Developed with
 HTML5, CSS3, NodeJS, Express, MongoDB, Jade, Javascript, JQuery, Bootstrap, auth0
 
-### [Demo](https://frozen-savannah-98046.herokuapp.com/)
-
 ### Author
 Jhongert Fuertes
